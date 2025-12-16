@@ -1,0 +1,453 @@
+No,Categories,Product,Unit,Price
+1,Oil,"Soja Oil",UNIT,5.40
+2,Oil,"Olive Oil",UNIT,19.20
+3,Oil,"Cooking oil vegetable ",UNIT,5.20
+4,Oil,"Sesame oil ",UNIT,10.10
+5,Oil,"Coconut oil",UNIT,24.10
+6,Oil,"Capers ",UNIT,7.55
+7,Oil,"Gherkins pickled ",UNIT,6.05
+8,Oil,"Olives black",UNIT,4.80
+9,Oil,"Olives green ",UNIT,10.70
+10,Oil,"Olives green stuffed ",UNIT,7.55
+11,Water,"Drinking Water 630 ml 20 pcs pack",UNIT,8.15
+12,Water,"Drinking Water 1 lt btl 12 btl packs",UNIT,7.55
+13,Water,"Drinking Water 3.03 lt 6btl case",UNIT,8.35
+14,Water,"Drinking Water  2 lt btl 6btl pack",UNIT,15.90
+15,Flour,"Corn starch 350 grm ",UNIT,1.80
+16,Rice,"Jasmin thai rice",UNIT,7.90
+17,Eggs,"Eggs fresh standrad ",UNIT,0.30
+18,Chiken,"Chicken breast boneless(fillet)",UNIT,10.15
+19,Chiken,"Chicken legs kg",UNIT,3.85
+20,Chiken,"Chicken nugget kg",UNIT,13.00
+21,Chiken,"Chicken oven ready kg",UNIT,6.50
+22,Chiken,"Chicken roasting ",UNIT,11.50
+23,Chiken,"Chicken wings kg",UNIT,9.05
+24,Duck,"Duck whole ovenready ",UNIT,25.00
+25,Sugar,"Brown sugar granulated",UNIT,2.05
+26,Sugar,"Sugar white granulated",UNIT,2.70
+27,Sugar,"Sugar white icing kg",UNIT,2.70
+28,"Energy drink","Gatorade sports drink 24 units/600 ml btl",UNIT,44.90
+29,"Energy drink","Coca cola, sprite, fanta (350ml x 24 can) ",UNIT,21.90
+30,"Energy drink","Pepsi, 7-up, fanta  (350ml x 24 can) ",UNIT,18.00
+31,"Energy drink","Local soft drink (350ml x 24 can) ",UNIT,15.00
+32,Coffe,"Coffee for expresso ",UNIT,9.30
+33,Coffe,"Coffee grounded 454 grm pkt",UNIT,7.60
+34,Coffe,"Coffe mate 500 grm ",UNIT,7.80
+35,Coffe,"Instant cofee nescafe 200 gr",UNIT,11.80
+36,Coffe,"Cafetalito dark  coffee 350 grm",UNIT,9.35
+37,Coffe,"Nescafe gold 100 grm",UNIT,12.80
+38,Coffe,"Coffe instant decafeinated ",UNIT,11.40
+39,"Canned meat","Chili con  meat",UNIT,8.20
+40,"Canned meat","Cocktail saussages",UNIT,0.00
+41,"Canned meat","Frankfurter sausages",UNIT,0.00
+42,"Canned meat","Liver paste",UNIT,7.45
+43,"Canned meat","Sausages with beans",UNIT,0.00
+44,"Canned meat","Spam 340 grm",UNIT,8.45
+45,Pork,"Pork bellies boneless",UNIT,10.00
+46,Pork,"Pork belly bone in , skin-on",UNIT,10.00
+47,Pork,"Pork chops",UNIT,9.90
+48,Pork,"Pork ears",UNIT,8.80
+49,Pork,"Pork fillet boneless",UNIT,9.55
+50,Pork,"Pork hocks (shanks)",UNIT,8.40
+51,Pork,"Pork knuckle",UNIT,9.80
+52,Pork,"Pork leg boneless",UNIT,9.90
+53,Pork,"Pork legs bone in",UNIT,10.00
+54,Pork,"Pork loins bone in",UNIT,9.90
+55,Pork,"Pork loins boneless",UNIT,9.75
+56,Pork,"Pork minced",UNIT,9.75
+57,Pork,"Pork neck boneless",UNIT,9.80
+58,Pork,"Pork shoulder boneless",UNIT,9.85
+59,Pork,"Pork spare ribs",UNIT,9.80
+60,Pork,"Pork spareribs",UNIT,10.00
+61,Pork,"Pork hock chopped",UNIT,9.40
+62,Pork,"Pork shank",UNIT,9.85
+63,Pork,"Pork tenderloin",UNIT,10.85
+64,"Canned meat","Cocktail saussages (tin)",UNIT,7.45
+65,"Canned meat","Frankfurter sausages (tin)",UNIT,7.50
+66,Pork,"Pork loin chops bone out, sliced",UNIT,10.00
+67,Cereals,"Alpen muesli 375 gr",UNIT,6.50
+68,Cereals,"Fruit and fibre 375 gr",UNIT,6.20
+69,Cereals,"Raisin brain ",UNIT,7.75
+70,Cereals,"Cereal fruits and nuts ",UNIT,5.50
+71,Cereals,"Corn flakes chocolate",UNIT,5.25
+72,Cereals,"Kellogs cornflakes",UNIT,5.25
+73,Cereals,"Sugar flosted flake ",UNIT,6.25
+74,Cereals,"Oats 5oogr",UNIT,6.40
+75,Cereals,"Semolina maizina",UNIT,4.75
+76,Cereals,"Special k",UNIT,6.85
+77,Corn,"Pop Corn",UNIT,7.85
+78,Beers,"Local brand ice 350 ml can 24 pcs box",UNIT,23.00
+79,Beers,"Local brand brava 454 ml can 24 pcs box",UNIT,26.00
+80,Beers,"Busch light  cs 24 tins",UNIT,29.00
+81,Beers,"Local brand gallo 350 ml can 24 pcs box",UNIT,35.00
+82,Beers,"Hineken 350ml bottle 24 pcs case",UNIT,55.00
+83,Beers,"Monta carlo 350ml bottle 24 pcs case",UNIT,50.00
+84,Beers,"Assorted chocolates ",UNIT,23.20
+85,Chocolate,"Chocolate local",UNIT,7.20
+86,Chocolate,"Chocolate topping liquid",UNIT,7.70
+87,Chocolate,"Cocoa 652 gram hersley (jar)",UNIT,20.30
+88,Chocolate,"Cocoa powder ",UNIT,9.50
+89,Chocolate,"Cooking dark chocolate bar",UNIT,23.25
+90,Chocolate,Nutella,UNIT,9.85
+91,Chocolate,"M&m milk chocolate 150 gm ",UNIT,5.80
+92,Chocolate,"M&m nuts 100 gm",UNIT,5.20
+93,Cigars,"Marlboro red & gold",UNIT,50.00
+94,Coconut,"Coconut fresh",UNIT,2.35
+95,Coconut,"Coconut grounded",UNIT,18.20
+96,Coconut,"Cream coconut 400ml",UNIT,7.50
+97,Condiments,"Cinnamon powder  pkt",UNIT,12.10
+98,Condiments,"Cinnamon whole  pkt",UNIT,8.80
+99,Coldcuts,"Bacon smoked streaky sliced",UNIT,18.45
+100,Coldcuts,Mortadella,UNIT,14.90
+101,Coldcuts,"Sausage chicken",UNIT,10.80
+102,Coldcuts,"Sausage chorizo",UNIT,9.55
+103,Coldcuts,"Sausage longaniza",UNIT,9.30
+104,Coldcuts,Salami,UNIT,14.85
+105,Spices,"Powder chicken 450gr",UNIT,9.35
+106,Spices,"Chili pepper grounded",UNIT,19.75
+107,Spices,"Cloves ground",UNIT,26.00
+108,Spices,"Cloves wholes",UNIT,24.15
+109,Spices,"Coriender powder kg",UNIT,19.75
+110,Spices,"Cumin powder",UNIT,26.35
+111,Spices,"Curry powder",UNIT,18.10
+112,Spices,"Pepper black grounded",UNIT,27.90
+113,Spices,"Pepper black whole",UNIT,24.20
+114,Spices,"Pepper cayenne grounded",UNIT,24.15
+115,Spices,"Seasonal salt",UNIT,7.70
+116,"Instant noodles","Instant noddles chicken(individual) ",UNIT,1.65
+117,"Instant noodles","Instant noddles schrimps(individual) ",UNIT,1.65
+118,"Instant noodles","Rice noddles (450 gm pkt)",UNIT,1.65
+119,"Instant noodles","Noodles sotanghon ",UNIT,1.65
+120,"Canned Fruit","Apricots ",UNIT,6.15
+121,"Canned Fruit",Cherries,UNIT,13.15
+122,"Canned Fruit","Fruit cocktail 800 gr.",UNIT,7.45
+123,"Canned Fruit","Pineapple slice 800 gr",UNIT,7.45
+124,"Canned Fruit","Peaches 820 gr",UNIT,7.50
+125,"Canned Fruit","Pineapples cutted 430 grm ",UNIT,5.20
+126,"Fresh fruit","Apple green/red",UNIT,4.00
+127,"Fresh fruit","Bananas half ripe -green",UNIT,1.10
+128,"Fresh fruit","Bananas ripe",UNIT,1.15
+129,"Fresh fruit","Grapes green or red ",UNIT,7.80
+130,"Fresh fruit","Grape red- seedles",UNIT,7.80
+131,"Fresh fruit",Kiwi,UNIT,7.75
+132,"Fresh fruit",Lemons,UNIT,4.20
+133,"Fresh fruit",Lime,UNIT,5.15
+134,"Fresh fruit","Mandarina ",UNIT,4.75
+135,"Fresh fruit","Mango ",UNIT,3.90
+136,"Fresh fruit","Oranges sweet  (local)",UNIT,2.85
+137,"Fresh fruit","Melons honey dew",UNIT,2.95
+138,"Fresh fruit","Pears ",UNIT,5.20
+139,"Fresh fruit","Pineapple ",UNIT,2.00
+140,"Fresh fruit","Water melons ",UNIT,5.70
+141,"Fresh fruit","Peach  ",UNIT,6.75
+142,"Fresh fruit",Papaya,UNIT,2.55
+143,"Fresh fruit","Plum ",UNIT,7.75
+144,"Fresh fruit",Strawberry,UNIT,8.50
+145,"Dried fruit","Mixed nuts salted ",UNIT,5.80
+146,"Dried fruit","Mixed nuts with shell ",UNIT,4.20
+147,"Dried fruit","Raisin dry",UNIT,18.70
+148,"Dried fruit","Almonds flaked 907 grm pkt",UNIT,29.50
+149,"Dried fruit","Whole almonds",UNIT,24.20
+150,"Dried fruit","Assorted biscuits ",UNIT,10.90
+151,Cookies,"Butter short bread 454 grm",UNIT,7.65
+152,Cookies,"Cookies biscuits",UNIT,6.70
+153,Cookies,"Digestive biscuits 176 gr",UNIT,2.90
+154,Cookies,"Danish butter cookies 454 grm ",UNIT,12.50
+155,Cookies,"Oreo cookies 432 grm pkt",UNIT,5.50
+156,Cookies,"Oreo cookies 108 grm pkt",UNIT,2.90
+157,Cookies,"Sky flakes crackers 1.05 kg",UNIT,9.90
+158,Flours,"Wheat flour (50kg pac)",UNIT,3.50
+159,Flours,"White flour (1 kg pac)",UNIT,4.00
+160,Herbs,"Basil dry 113 grm ",UNIT,10.80
+161,Herbs,Bayleaves,UNIT,25.00
+162,Herbs,"Coriander leaves",UNIT,6.45
+163,Herbs,"Cumin seeds ground",UNIT,25.00
+164,Herbs,"Mint leaves",UNIT,15.35
+165,Herbs,"Oregano grounded 118 grm ",UNIT,13.15
+166,"Syrups / Concentrates","Rosemary dry",UNIT,20.00
+167,"Syrups / Concentrates","Thyme dry",UNIT,25.00
+168,"Syrups / Concentrates","Tamrinda paste",UNIT,10.10
+169,"Syrups / Concentrates","Ice tea powder juice 30 grm ",UNIT,1.35
+170,"Syrups / Concentrates","Maple sirup",UNIT,6.45
+171,"Syrups / Concentrates","Peanut butter 500 grm ",UNIT,8.15
+172,"Syrups / Concentrates","Tang mango juice powder (mini)",UNIT,1.10
+173,"Syrups / Concentrates","Tang orange juice powder (mini)",UNIT,1.10
+174,"Syrups / Concentrates","Tang peach juice powder (mini)",UNIT,1.10
+175,"Syrups / Concentrates","Syrup corn white  (mini)",UNIT,1.10
+176,"Fruit Juices","Apple juice",UNIT,2.30
+177,"Fruit Juices","Guayaba juice",UNIT,2.40
+178,"Fruit Juices","Grape red",UNIT,2.40
+179,"Fruit Juices","Apricot juice",UNIT,2.40
+180,"Fruit Juices","Grape juice",UNIT,2.40
+181,"Fruit Juices","Mango juice",UNIT,2.40
+182,"Fruit Juices","Orange juice",UNIT,2.40
+183,"Fruit Juices","Pinneaple juice",UNIT,2.40
+184,"Fruit Juices","Tomato juice",UNIT,2.60
+185,"Milks / Creams","Coffee creamer 500 grm",UNIT,7.80
+186,"Milks / Creams","Condensed milk",UNIT,3.35
+187,"Milks / Creams","Evaporated milk ",UNIT,3.30
+188,"Milks / Creams","Milk long life 0%",UNIT,2.30
+189,"Milks / Creams","Milk long life uht 1.5 % fat",UNIT,2.30
+190,"Milks / Creams","Milk long life almond flavor",UNIT,4.40
+191,"Milks / Creams","Milk long life soya flavor",UNIT,4.55
+192,"Milks / Creams","Milkpowder ",UNIT,20.25
+193,"Milks / Creams","Sour cream ",UNIT,15.00
+194,"Milks / Creams","Topping cream aerosol 400ml",UNIT,9.75
+195,"Milks / Creams","Whiping cream 375ml btl ",UNIT,9.10
+196,Yeast,"Bakiing soda 454 grm ",UNIT,5.25
+197,Yeast,"Yeast dry 500 grm",UNIT,7.75
+198,Butter,"Butter half salted 227 gm pack",UNIT,21.00
+199,Butter,"Butter salted 227 gm pkt",UNIT,7.45
+200,Butter,"Butter unsalted (227 gm pack)",UNIT,7.20
+201,"Seafood ","Crab fresh local",UNIT,15.20
+202,"Seafood ",Lobster,UNIT,28.60
+203,"Seafood ","Pink shrimps ",UNIT,26.35
+204,Offals,"Chicken gizzard",UNIT,7.25
+205,Offals,"Chicken liver",UNIT,7.20
+206,Jams,"Apricont jam 450 grr",UNIT,6.35
+207,Jams,"Jam assorted flavour 450gr",UNIT,6.40
+208,Jams,"Blueberry jam 340 frm ",UNIT,7.50
+209,Jams,"Fig preserve jam 290 grm",UNIT,5.30
+210,Jams,"Maraschino cherry 340 grm ",UNIT,5.30
+211,Jams,"Orange jam 450 gr",UNIT,5.30
+212,Jams,"Pineapple jam 400 grm ",UNIT,5.70
+213,Jams,"Raspberry jam 340 grm ",UNIT,5.70
+214,Jams,"Strawberry jam 340 grm",UNIT,5.70
+215,Honey,"Honey 350 gr",UNIT,5.90
+216,Mustard,"French mustard cooking 250ml",UNIT,5.80
+217,"Bread / Bakery","Bread crumbs panko",UNIT,14.20
+218,"Bread / Bakery","Bread toasting sliced 650 grm ",UNIT,7.20
+219,"Bread / Bakery","Bread white sliced 900 grm ",UNIT,6.50
+220,"Bread / Bakery","Cake mix chocolate 400 grm ",UNIT,5.00
+221,"Bread / Bakery","French baguette 300 gr",UNIT,2.50
+222,"Bread / Bakery","Bread brown sliced 770 gr",UNIT,6.75
+223,"Bread / Bakery","French croissants 6 pcs ",UNIT,5.85
+224,"Bread / Bakery","Hamburger bon 12 pcs",UNIT,10.00
+225,"Bread / Bakery","Pan cake mix 400 grm ",UNIT,5.45
+226,"Bread / Bakery","Hot cake mix  400 grm ",UNIT,5.00
+227,Chips,"Lays cheaps personal 40gm pack",UNIT,1.95
+228,Chips,"Lays crips plain salted 110gm pack",UNIT,4.55
+229,Chips,"Lays crips cheese & onion 110gm pack",UNIT,4.60
+230,Chips,"Lays crips plain and cheese190gm pack",UNIT,4.60
+231,Chips,"Doritos 150gm pack",UNIT,3.70
+232,Chips,"Pringals 40gm box",UNIT,2.40
+233,Chips,"Pringals 118gm box",UNIT,5.30
+234,Paste,"Farfalle 454 grm",UNIT,5.30
+235,Paste,"Farfalle mini 200 grm",UNIT,3.05
+236,Paste,"Fettucini 300 grm",UNIT,4.20
+237,Paste,"Fussili pasta 400 grm",UNIT,4.15
+238,Paste,"Glas noodles ",UNIT,5.30
+239,Paste,"Lasagna sheets 500 grm",UNIT,4.65
+240,Paste,"Lenguini 500 grm ",UNIT,4.35
+241,Paste,"Macaronis 200 grm",UNIT,1.60
+242,Paste,"Macaronis elbows 200 grm",UNIT,1.60
+243,Paste,"Pancit cantoon noodles 350 grm",UNIT,5.25
+244,Paste,"Paste shelles",UNIT,3.30
+245,Paste,"Rammen noodles 70 gr ",UNIT,1.40
+246,Paste,"Paste shelles mini",UNIT,6.00
+247,Paste,"Penne rigate pasta",UNIT,6.00
+248,Paste,Spaghettis,UNIT,6.35
+249,Paste,"Tagliatelles 300 grm ",UNIT,4.00
+250,Egg,"Fresh egg",UNIT,0.30
+251,"Canned fish",Crabmeat,UNIT,8.25
+252,"Canned fish",Escargot,UNIT,15.20
+253,"Canned fish","Mussels natural",UNIT,12.25
+254,"Canned fish","Sardines hot 155 grm",UNIT,2.75
+255,"Canned fish","Sardines in oil  155 grm",UNIT,3.15
+256,"Canned fish","Sardines in tomato 155 grm",UNIT,2.75
+257,"Canned fish","Tuna in water  170 grm",UNIT,3.15
+258,"Canned fish","Tuna in oil 170 grm ",UNIT,3.15
+259,"Canned fish","Tuna in vegetable 170 grm ",UNIT,3.15
+260,"Canned fish","Tuna natural 185 grm ",UNIT,4.45
+261,"Fresh/frozen fish","Fish fillet as per require  (fresh or frozen)",UNIT,18.50
+262,"Fresh/frozen fish","Fresh fish (robalo,baracuda, colorado, cubera)  (fresh or frozen)",UNIT,10.00
+263,"Fresh/frozen fish","Tilapia m (fresh or frozen)",UNIT,11.25
+264,Cheese,"Philadelphia cream chees 150 gr",UNIT,6.50
+265,Cheese,"American cheese",UNIT,14.50
+266,Cheese,"Cheddar cheese",UNIT,23.00
+267,Cheese,"Cheddar cheese slice",UNIT,19.85
+268,Cheese,"Cheese feta 6 onz",UNIT,16.00
+269,Cheese,"Cheese gouda",UNIT,30.00
+270,Cheese,"Cheese mozzarella whole",UNIT,20.00
+271,Cheese,"Cheese sliced",UNIT,14.50
+272,Cheese,"Cottage cheese 319 grm",UNIT,10.00
+273,Cheese,"Goat cheese 10.5 onz. ",UNIT,15.00
+274,Cheese,"Manchego 460grm.",UNIT,15.00
+275,Cheese,"Mozarella cheese grated ",UNIT,24.50
+276,Cheese,"Provolone cheese 690grm. ",UNIT,20.35
+277,Cheese,"Swiss cheese 690grm.",UNIT,15.50
+278,Beef,"Beef bone knuckle",UNIT,11.40
+279,Beef,"Beef bone marrow",UNIT,11.90
+280,Beef,"Beef brisket boneless",UNIT,14.50
+281,Beef,"Beef chunk for mincing",UNIT,13.00
+282,Beef,"Beef chunk ",UNIT,13.50
+283,Beef,"Beef cube rools",UNIT,13.00
+284,Beef,"Beef liver",UNIT,10.50
+285,Beef,"Beef minced",UNIT,12.75
+286,Beef,"Beef ribeye",UNIT,15.50
+287,Beef,"Beef rounds bone in",UNIT,13.50
+288,Beef,"Beef shin chopped",UNIT,13.00
+289,Beef,"Beef rump steak boneless",UNIT,14.00
+290,Beef,"Beef shank bone in",UNIT,11.40
+291,Beef,"Beef shortrib bone in",UNIT,11.75
+292,Beef,"Beef silverside",UNIT,13.75
+293,Beef,"Beef sirloin",UNIT,14.00
+294,Beef,"Beef spare ribs cutted",UNIT,12.50
+295,Beef,"Beef stripe",UNIT,12.00
+296,Beef,"Beef striploin",UNIT,14.50
+297,Beef,"Beef tail",UNIT,13.75
+298,Beef,"Beef tenderloin 2/3 lbs",UNIT,15.20
+299,Beef,"Beef topside",UNIT,13.50
+300,Beef,"Bones beef ( for soup cutted)",UNIT,9.50
+301,Beef,"Hamburger pure beef",UNIT,17.50
+302,Beef,"T bone steak sliced",UNIT,15.00
+303,Beef,"Beef rump ",UNIT,13.25
+304,Beef,"Beef thick flank",UNIT,14.75
+305,Beef,Ox-tongue,UNIT,19.85
+306,Ron,"Ron xl extra light btl/750ml",UNIT,12.00
+307,Ron,"Ron botran 12 years btl/750ml",UNIT,17.70
+308,Ron,"Ron botran 8 years btl/750ml",UNIT,14.95
+309,Ron,"Ron botran 5 years btl/750ml",UNIT,14.45
+310,Ron,"Bacardi blanco 750ml",UNIT,19.00
+311,Ron,"Bacardi blanco 1750ml",UNIT,32.00
+312,Ron,"Bacardi oro superior 1750ml",UNIT,36.00
+313,Ron,"Bacardi oro superior 750ml",UNIT,19.45
+314,Ron,"Bacardi 12 years 1 lt ",UNIT,38.00
+315,Ron,"Zacapa ron 23 years",UNIT,75.00
+316,Salt,"Salt cooking fine",UNIT,1.45
+317,Salt,"Salt table",UNIT,1.45
+318,Sauce,"Barbecue sauce",UNIT,9.00
+319,Sauce,"Chili sauce hot 300ml",UNIT,4.40
+320,Sauce,"Heinz tomato ketchup 340lt.",UNIT,2.95
+321,Sauce,"Italian dressing",UNIT,4.15
+322,Sauce,"Kikkoman soya sauce 591ml",UNIT,11.00
+323,Sauce,"Maggi  brand chcken bouilion ",UNIT,6.75
+324,Sauce,"Mayonnaise 500 ml",UNIT,6.05
+325,Sauce,"Oyster sauce 500 ml",UNIT,8.65
+326,Sauce,"Soy sauce 1lt",UNIT,9.35
+327,Sauce,"Soya sauce dark 1lt",UNIT,9.65
+328,Sauce,"Tabasco sauce 60ml",UNIT,5.55
+329,Sauce,"Thousand island dressing",UNIT,5.50
+330,Sauce,"Tomato puree",UNIT,4.50
+331,Sauce,"Tomato sauce",UNIT,3.55
+332,Sauce,"sause english 200ml",UNIT,3.80
+333,Sauce,"Sauce chili garlic 250ml",UNIT,5.00
+334,Sauce,"Sweet and sour",UNIT,7.05
+335,Sauce,"Tereyaki 200 ml",UNIT,6.30
+336,Sauce,"Maggie seasoning 100 ml",UNIT,6.80
+337,Shampoo,"Shampo head&shoulder men (375ml btl)",UNIT,10.45
+338,Soup,"Inst. Chicken soup with noodles",UNIT,1.40
+339,Soup,"Soup powder asparagus",UNIT,2.40
+340,Soup,"Soup powder chick noodle",UNIT,2.40
+341,Soup,"Soup powder leeks",UNIT,2.40
+342,Soup,"Soup powder mushrooms",UNIT,1.40
+343,Soup,"Soup powder oignon",UNIT,2.40
+344,Soup,"Soup powder tomato",UNIT,2.40
+345,"Tea / Infusions","Assrted fruit flvr tea (20 pc pkt)",UNIT,3.95
+346,"Tea / Infusions","Camomille teabags (20 pc pkt)",UNIT,3.55
+347,"Tea / Infusions","Jasmine tea   (20pc pkt)",UNIT,5.70
+348,"Tea / Infusions","Green tea   (20pc pkt)",UNIT,3.55
+349,"Tea / Infusions","Teabags liptons yellow label (100 bags)",UNIT,10.75
+350,"Tea / Infusions","Teabags mint ( 20pc pkt)",UNIT,5.00
+351,Store,"Dishwashing liquid 1 lt",UNIT,4.95
+352,Store,"Dishwashing machine tablets",UNIT,0.65
+353,Store,"Strong plastic bags (33gallon) 100 pec pack",UNIT,48.00
+354,Store,"Strong plastic bags (55gallon) 50 pec pack",UNIT,45.00
+355,Store,"Toilet paper  per roll ",UNIT,0.95
+356,Store,"Rags per kg (used cloth tshirt only)",UNIT,3.15
+357,Store,"Washing detergent power per kg",UNIT,3.00
+358,Store,"Floor cleaner lt",UNIT,2.75
+359,Store,"Wc clener 750ml",UNIT,10.75
+360,Store,"Aluminion foil x 500 ",UNIT,44.95
+361,Store,"Plastic food wrap (2000 ft)",UNIT,42.00
+362,Vainilla,"Vanilla essence 200ml",UNIT,3.90
+363,"Frozen Vegetables","Carrots & peas",UNIT,6.80
+364,"Frozen Vegetables","Carrots whole baby",UNIT,6.45
+365,"Frozen Vegetables","French fried potatoes",UNIT,6.00
+366,"Frozen Vegetables","Mushrooms sliced",UNIT,13.70
+367,"Frozen Vegetables","Mushrooms whole ",UNIT,3.20
+368,"Fresh Vegetables","Asparagus green",UNIT,16.50
+369,"Fresh Vegetables",Avocado,UNIT,4.30
+370,"Fresh Vegetables","Pepper bell green",UNIT,2.70
+371,"Fresh Vegetables","Pepper bell red",UNIT,3.35
+372,"Fresh Vegetables","Pepper bell yellow",UNIT,5.25
+373,"Fresh Vegetables",Coriander,UNIT,2.00
+374,"Fresh Vegetables",Broccolis,UNIT,2.00
+375,"Fresh Vegetables","Cabbage white",UNIT,1.40
+376,"Fresh Vegetables","Cabbages green",UNIT,1.45
+377,"Fresh Vegetables","Cabbages purple",UNIT,2.00
+378,"Fresh Vegetables",Carrots,UNIT,1.70
+379,"Fresh Vegetables",Cauliflowers,UNIT,1.95
+380,"Fresh Vegetables","Celery green",UNIT,2.45
+381,"Fresh Vegetables",Chayottes,UNIT,1.60
+382,"Fresh Vegetables","Cherry tomato",UNIT,6.10
+383,"Fresh Vegetables","Pepper chili  red ",UNIT,4.70
+384,"Fresh Vegetables","Pepper chilli green",UNIT,4.95
+385,"Fresh Vegetables","Corn on cob",UNIT,3.10
+386,"Fresh Vegetables",Cucumbers,UNIT,1.60
+387,"Fresh Vegetables","Curly lettuce",UNIT,3.20
+388,"Fresh Vegetables",Eggplant,UNIT,3.40
+389,"Fresh Vegetables","Garden peas",UNIT,7.95
+390,"Fresh Vegetables",Garlic,UNIT,7.55
+391,"Fresh Vegetables",Ginger,UNIT,7.70
+392,"Fresh Vegetables","Green beans ",UNIT,4.95
+393,"Fresh Vegetables","Leeks long stem",UNIT,4.95
+394,"Fresh Vegetables","Lemon grass fresh",UNIT,13.70
+395,"Fresh Vegetables","Lettuce iceberg",UNIT,2.50
+396,"Fresh Vegetables","Lettuce red oak",UNIT,5.45
+397,"Fresh Vegetables","Okra (lady finger)",UNIT,8.20
+398,"Fresh Vegetables","Onions white fresh",UNIT,2.25
+399,"Fresh Vegetables","Onions yellow",UNIT,2.45
+400,"Fresh Vegetables","Onions red",UNIT,2.75
+401,"Fresh Vegetables",Parsley,UNIT,6.05
+402,"Fresh Vegetables","Potatoes big ",UNIT,2.00
+403,"Fresh Vegetables","Potatoes small ",UNIT,2.05
+404,"Fresh Vegetables","Sweet potato",UNIT,2.10
+405,"Fresh Vegetables","Pumpkin yellow",UNIT,1.55
+406,"Fresh Vegetables","Raddishes red",UNIT,2.00
+407,"Fresh Vegetables","Snow peas",UNIT,5.35
+408,"Fresh Vegetables","Soy beans sprouts",UNIT,5.70
+409,"Fresh Vegetables","Spinach leaves",UNIT,5.30
+410,"Fresh Vegetables","Tomatoes half ripe",UNIT,2.50
+411,"Fresh Vegetables","Tomatoes ripe",UNIT,2.20
+412,"Fresh Vegetables",Watercress,UNIT,5.70
+413,"Fresh Vegetables","Zucchini / marrows green",UNIT,2.35
+414,"Fresh Vegetables","Asparagus spears ",UNIT,6.80
+415,"Fresh Vegetables","Baby corn whole ",UNIT,7.30
+416,"Canned Vegetables","Black beans  ",UNIT,5.20
+417,"Canned Vegetables","Chickpeas ",UNIT,5.20
+418,"Canned Vegetables","Jalapeno/big green hot chille 425 grm",UNIT,5.25
+419,"Canned Vegetables","Mixed vegetables 454 grm",UNIT,5.25
+420,"Canned Vegetables","Mushrooms sliced 454 grm ",UNIT,5.00
+421,"Canned Vegetables","Mushrooms whole 454 grm tin",UNIT,5.25
+422,"Canned Vegetables","Palm hearts",UNIT,3.50
+423,"Canned Vegetables","Peas and carrots ",UNIT,3.50
+424,"Canned Vegetables","Peas garden medium",UNIT,3.50
+425,"Canned Vegetables","Red kidney beans long",UNIT,3.50
+426,"Canned Vegetables","Red pimento whole",UNIT,4.50
+427,"Canned Vegetables","Soybean sprouts",UNIT,7.50
+428,"Canned Vegetables","Sweet corn kernels",UNIT,5.00
+429,"Canned Vegetables","Tomato paste 454 grm ",UNIT,5.25
+430,"Canned Vegetables","Mixed pickles 400 gr",UNIT,7.80
+431,"Canned Vegetables","Pickled cucumbers 600 grm",UNIT,6.80
+432,"Canned Vegetables","Red sweet pepper pickled 300 gr",UNIT,5.75
+433,Vinegar,"Balsamic vinegar 250ml",UNIT,9.40
+434,Vinegar,"Balsamic white vinegar 227 ml",UNIT,8.25
+435,Vinegar,"Vinegar white",UNIT,3.85
+436,Vinegar,"Apple vinager 750ml ",UNIT,5.80
+437,Vinegar,"Whte - spirit vinegar",UNIT,4.20
+438,wine,"1 lt pack red wine",UNIT,11.45
+439,wine,"750 ml bottle white ",UNIT,10.00
+440,wine,"750 ml bottle red(gato negro brand)",UNIT,10.00
+441,Vodka,"Vodka sirov  btl/750ml",UNIT,14.45
+442,Whisky,"Whisky williams lawson  btl/750ml",UNIT,13.75
+443,Whisky,"Whisky chanceler  btl/1 ltr",UNIT,15.00
+444,Whisky,"Johny walker red level 750 ml",UNIT,32.00
+445,Whisky,"Johny walker black level 750 ml",UNIT,70.00
+446,Whisky,"Old pair gold",UNIT,59.00
+447,Whisky,"Vat 69 750 ml",UNIT,15.00
+448,Yoghurt,"Yoghurt fruited assorted 125 grm ",UNIT,1.35
+449,Yoghurt,"Yoghurt plain 125 grm",UNIT,1.35
+450,Yoghurt,"Yoghurt mix fruite",UNIT,9.35
+451,Yoghurt,"Yoghurt fruited assorted ",UNIT,9.35
+452,Yoghurt,"Yoghurt plain -light",UNIT,9.35
