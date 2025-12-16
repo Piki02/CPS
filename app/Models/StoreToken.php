@@ -12,9 +12,10 @@ class StoreToken extends Model
     protected $fillable = [
         'token',
         'captain_name',
+        'vessel_name',
+        'created_by',
         'is_active',
         'expires_at',
-        'created_by',
     ];
 
     protected $casts = [

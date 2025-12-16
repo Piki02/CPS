@@ -12,19 +12,50 @@ class DashboardController extends Controller
         
         if ($user->hasRole('Admin')) {
             $productsCount = \App\Models\Product::count();
-            // $ordersCount = \App\Models\Order::count(); // Commented until orders table exists
-            $ordersCount = 0;
+            $ordersCount = \App\Models\Order::count();
             $usersCount = \App\Models\User::count();
-            return view('dashboard', compact('productsCount', 'ordersCount', 'usersCount'));
+
+            // Reporting Data
+            $totalRevenue = \App\Models\Order::sum('total');
+            
+            // Monthly Sales (Last 6 months)
+            $monthlySales = \App\Models\Order::selectRaw('DATE_FORMAT(created_at, "%Y-%m") as month, SUM(total) as total')
+                ->groupBy('month')
+                ->orderBy('month', 'desc')
+                ->take(6)
+                ->get()
+                ->reverse();
+
+            // Top 5 Products
+            $topProducts = \App\Models\OrderItem::select('product_id', \Illuminate\Support\Facades\DB::raw('SUM(quantity) as total_qty'))
+                ->with('product')
+                ->groupBy('product_id')
+                ->orderByDesc('total_qty')
+                ->take(5)
+                ->get();
+
+            return view('dashboard', compact('productsCount', 'ordersCount', 'usersCount', 'totalRevenue', 'monthlySales', 'topProducts'));
         } 
         elseif ($user->hasRole('Branch Store')) {
-            // $orders = \App\Models\Order::where('user_id', $user->id)->latest()->get();
-            $orders = collect(); // Empty collection until orders table exists
-            return view('dashboard', compact('orders'));
+            $orders = \App\Models\Order::where('user_id', $user->id)->latest()->get();
+            
+            // Reporting Data for Branch
+            $totalRevenue = $orders->sum('total');
+            $ordersCount = $orders->count();
+            
+            // Monthly Sales (Last 6 months)
+            $monthlySales = \App\Models\Order::where('user_id', $user->id)
+                ->selectRaw('DATE_FORMAT(created_at, "%Y-%m") as month, SUM(total) as total')
+                ->groupBy('month')
+                ->orderBy('month', 'desc')
+                ->take(6)
+                ->get()
+                ->reverse();
+
+            return view('dashboard', compact('orders', 'totalRevenue', 'ordersCount', 'monthlySales'));
         } 
         elseif ($user->hasRole('Supplier')) {
-            // $orders = \App\Models\Order::with('user')->latest()->get();
-            $orders = collect(); // Empty collection until orders table exists
+            $orders = \App\Models\Order::where('user_id', $user->id)->latest()->get();
             return view('dashboard', compact('orders'));
         }
 

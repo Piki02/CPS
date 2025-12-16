@@ -32,9 +32,10 @@ class TokenController extends Controller
             return back()->withErrors(['token' => 'Token has expired.']);
         }
 
-        // Store in session with captain name
+        // Store in session with captain name and vessel name
         session(['store_access_token' => $token->token]);
         session(['captain_name' => $token->captain_name]);
+        session(['vessel_name' => $token->vessel_name]);
 
         return redirect()->route('store');
     }
@@ -43,15 +44,17 @@ class TokenController extends Controller
     {
         $request->validate([
             'captain_name' => 'required|string|max:255',
+            'vessel_name' => 'nullable|string|max:255',
         ]);
 
         $token = StoreToken::create([
             'token' => Str::upper(Str::random(8)),
             'captain_name' => $request->captain_name,
+            'vessel_name' => $request->vessel_name,
             'created_by' => auth()->id(),
             'expires_at' => null, // No expiration - valid until checkout
         ]);
 
-        return back()->with('success', 'Token generated: ' . $token->token . ' - Captain: ' . $token->captain_name . ' (Valid until checkout)');
+        return back()->with('success', 'Token generated: ' . $token->token . ' - Captain: ' . $token->captain_name . ' - Vessel: ' . ($token->vessel_name ?? 'N/A') . ' (Valid until checkout)');
     }
 }

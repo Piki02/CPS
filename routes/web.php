@@ -31,8 +31,9 @@ Route::group(['prefix' => Mcamara\LaravelLocalization\Facades\LaravelLocalizatio
     // Cart Routes
     Route::post('/cart/add/{id}', [App\Http\Controllers\CartController::class, 'add'])->name('cart.add');
     Route::get('/cart', [App\Http\Controllers\CartController::class, 'index'])->name('cart.index');
+    Route::patch('/cart/update/{id}', [App\Http\Controllers\CartController::class, 'update'])->name('cart.update');
     Route::delete('/cart/remove/{id}', [App\Http\Controllers\CartController::class, 'remove'])->name('cart.remove');
-    Route::post('/cart/checkout', [App\Http\Controllers\CartController::class, 'checkout'])->name('cart.checkout')->middleware(['auth', 'verified']);
+    Route::post('/cart/checkout', [App\Http\Controllers\CartController::class, 'checkout'])->name('cart.checkout')->middleware('check.token');
 
     Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 
@@ -54,13 +55,18 @@ Route::group(['prefix' => Mcamara\LaravelLocalization\Facades\LaravelLocalizatio
         Route::post('/tokens/generate', [App\Http\Controllers\TokenController::class, 'generate'])->name('tokens.generate');
 
         // User Management
-        Route::resource('users', App\Http\Controllers\UserController::class);
+        Route::resource('users', App\Http\Controllers\UserController::class)->middleware(['role:Admin|Branch Store']);
 
         // Product Management
         Route::resource('products', App\Http\Controllers\ProductController::class);
 
         // Category Management
         Route::resource('categories', App\Http\Controllers\CategoryController::class);
+
+        // Order Management
+        Route::get('/orders/{order}', [App\Http\Controllers\OrderController::class, 'show'])->name('orders.show');
+        Route::put('/orders/{order}', [App\Http\Controllers\OrderController::class, 'update'])->name('orders.update');
+        Route::get('/orders/{order}/quotation', [App\Http\Controllers\OrderController::class, 'generateQuotation'])->name('orders.quotation');
     });
 
     require __DIR__.'/auth.php';

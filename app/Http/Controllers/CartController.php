@@ -67,7 +67,11 @@ class CartController extends Controller
             return redirect()->route('store')->with('error', 'Cart is empty!');
         }
 
-        $captainName = session()->get('captain_name', 'Guest');
+        $captainName = session()->get('captain_name');
+        if (!$captainName && \Illuminate\Support\Facades\Auth::check()) {
+            $captainName = \Illuminate\Support\Facades\Auth::user()->name;
+        }
+        $captainName = $captainName ?? 'Guest';
         $token = session()->get('store_access_token');
         
         // Create Order
@@ -76,12 +80,29 @@ class CartController extends Controller
             $total += $details['price'] * $details['quantity'];
         }
 
-        $order = Order::create([
-            'captain_name' => $captainName,
-            'token' => $token,
-            'status' => 'pending',
-            'total' => $total
-        ]);
+        $order = new Order();
+        $order->captain_name = $captainName;
+        $order->token = $token;
+        $order->status = 'pending';
+        $order->total = $total;
+
+        // Assign User ID
+        if (\Illuminate\Support\Facades\Auth::check()) {
+            $order->user_id = \Illuminate\Support\Facades\Auth::id();
+        } elseif ($token) {
+            $storeToken = StoreToken::where('token', $token)->first();
+            if ($storeToken) {
+                $order->user_id = $storeToken->created_by;
+                $order->vessel_name = $storeToken->vessel_name;
+            }
+        }
+        
+        // Fallback or override if session has it (e.g. from token validation)
+        if (session('vessel_name')) {
+            $order->vessel_name = session('vessel_name');
+        }
+
+        $order->save();
 
         // Create Order Items
         foreach($cart as $id => $details) {
@@ -95,15 +116,23 @@ class CartController extends Controller
             ]);
         }
 
-        // Invalidate token after checkout
+        // Delete token after checkout
         if($token) {
-            StoreToken::where('token', $token)->update(['is_active' => false]);
+            StoreToken::where('token', $token)->delete();
         }
 
         // Clear cart and session
         session()->forget('cart');
         session()->forget('captain_name');
         session()->forget('store_access_token');
+
+        // Send Email Notification
+        try {
+            \Illuminate\Support\Facades\Mail::to('Supply@caribbeanps.com.gt')->send(new \App\Mail\OrderCreated($order));
+        } catch (\Exception $e) {
+            // Log error but don't stop the process
+            \Illuminate\Support\Facades\Log::error('Failed to send order email: ' . $e->getMessage());
+        }
 
         return view('cart.success', compact('order'));
     }

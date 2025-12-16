@@ -11,9 +11,15 @@ class Order extends Model
 
     protected $fillable = [
         'captain_name',
+        'vessel_name',
         'token',
         'total',
         'status',
+        'user_id',
+        'discount',
+        'discount_percentage',
+        'tax',
+        'shipping_cost',
     ];
 
     public function items()

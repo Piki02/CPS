@@ -15,6 +15,11 @@ class CheckStoreToken
      */
     public function handle(Request $request, Closure $next): Response
     {
+        // Allow access if user is logged in and has the right role
+        if (\Illuminate\Support\Facades\Auth::check() && \Illuminate\Support\Facades\Auth::user()->hasAnyRole(['Branch Store', 'Admin'])) {
+            return $next($request);
+        }
+
         if (!session()->has('store_access_token')) {
             return redirect()->route('token.form');
         }
