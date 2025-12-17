@@ -50,8 +50,10 @@ Route::group(['prefix' => Mcamara\LaravelLocalization\Facades\LaravelLocalizatio
         Route::post('/products/import', [App\Http\Controllers\ProductController::class, 'import'])->name('products.import');
         // Product Export
         Route::get('/products/export', [App\Http\Controllers\ProductController::class, 'export'])->name('products.export');
+        Route::get('/products/export-pdf', [App\Http\Controllers\ProductController::class, 'exportPdf'])->name('products.export-pdf');
 
         // Token Generation
+        Route::get('/tokens', [App\Http\Controllers\TokenController::class, 'index'])->name('tokens.index');
         Route::post('/tokens/generate', [App\Http\Controllers\TokenController::class, 'generate'])->name('tokens.generate');
 
         // User Management
@@ -66,6 +68,7 @@ Route::group(['prefix' => Mcamara\LaravelLocalization\Facades\LaravelLocalizatio
         Route::resource('categories', App\Http\Controllers\CategoryController::class);
 
         // Order Management
+        Route::get('/orders', [App\Http\Controllers\OrderController::class, 'index'])->name('orders.index');
         Route::get('/orders/{order}', [App\Http\Controllers\OrderController::class, 'show'])->name('orders.show');
         Route::put('/orders/{order}', [App\Http\Controllers\OrderController::class, 'update'])->name('orders.update');
         Route::get('/orders/{order}/quotation', [App\Http\Controllers\OrderController::class, 'generateQuotation'])->name('orders.quotation');

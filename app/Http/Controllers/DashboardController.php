@@ -34,7 +34,11 @@ class DashboardController extends Controller
                 ->take(5)
                 ->get();
 
-            return view('dashboard', compact('productsCount', 'ordersCount', 'usersCount', 'totalRevenue', 'monthlySales', 'topProducts'));
+            $bestSellingProduct = $topProducts->first();
+
+            $vesselsCount = \App\Models\Order::whereNotNull('vessel_name')->distinct('vessel_name')->count('vessel_name');
+
+            return view('dashboard', compact('productsCount', 'ordersCount', 'usersCount', 'totalRevenue', 'monthlySales', 'topProducts', 'vesselsCount', 'bestSellingProduct'));
         } 
         elseif ($user->hasRole('Branch Store')) {
             $orders = \App\Models\Order::where('user_id', $user->id)->latest()->get();
@@ -42,7 +46,18 @@ class DashboardController extends Controller
             // Reporting Data for Branch
             $totalRevenue = $orders->sum('total');
             $ordersCount = $orders->count();
+            $vesselsCount = \App\Models\Order::where('user_id', $user->id)->whereNotNull('vessel_name')->distinct('vessel_name')->count('vessel_name');
             
+            // Best Selling Product for Branch
+            $bestSellingProduct = \App\Models\OrderItem::whereHas('order', function($query) use ($user) {
+                    $query->where('user_id', $user->id);
+                })
+                ->select('product_id', \Illuminate\Support\Facades\DB::raw('SUM(quantity) as total_qty'))
+                ->with('product')
+                ->groupBy('product_id')
+                ->orderByDesc('total_qty')
+                ->first();
+
             // Monthly Sales (Last 6 months)
             $monthlySales = \App\Models\Order::where('user_id', $user->id)
                 ->selectRaw('DATE_FORMAT(created_at, "%Y-%m") as month, SUM(total) as total')
@@ -52,7 +67,7 @@ class DashboardController extends Controller
                 ->get()
                 ->reverse();
 
-            return view('dashboard', compact('orders', 'totalRevenue', 'ordersCount', 'monthlySales'));
+            return view('dashboard', compact('orders', 'totalRevenue', 'ordersCount', 'monthlySales', 'vesselsCount', 'bestSellingProduct'));
         } 
         elseif ($user->hasRole('Supplier')) {
             $orders = \App\Models\Order::where('user_id', $user->id)->latest()->get();

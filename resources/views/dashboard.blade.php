@@ -15,40 +15,18 @@
             </div>
 
             @role('Admin')
-            <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg border-t-4 border-cps-blue mb-8">
-                <div class="p-6 text-gray-900">
-                    <h3 class="text-2xl font-bold mb-4 text-gray-800">{{ __('Admin Actions') }}</h3>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <a href="{{ route('users.index') }}" class="block p-6 bg-gray-50 hover:bg-gray-100 rounded-lg border border-gray-200 transition duration-300">
-                            <h4 class="text-lg font-bold text-cps-blue mb-2">{{ __('Manage Users') }}</h4>
-                            <p class="text-gray-600">{{ __('View, create, edit, and delete users.') }}</p>
-                        </a>
-                        <a href="{{ route('products.index') }}" class="block p-6 bg-gray-50 hover:bg-gray-100 rounded-lg border border-gray-200 transition duration-300">
-                            <h4 class="text-lg font-bold text-cps-blue mb-2">{{ __('Manage Products') }}</h4>
-                            <p class="text-gray-600">{{ __('Add new products, update prices, and manage inventory.') }}</p>
-                        </a>
-                         <a href="{{ route('categories.index') }}" class="block p-6 bg-gray-50 hover:bg-gray-100 rounded-lg border border-gray-200 transition duration-300">
-                            <h4 class="text-lg font-bold text-cps-blue mb-2">{{ __('Manage Categories') }}</h4>
-                            <p class="text-gray-600">{{ __('Organize products into categories.') }}</p>
-                        </a>
-                    </div>
-                </div>
-            </div>
+
+            <!-- Admin Actions removed as they are now in sidebar -->
 
             <!-- Reporting Section -->
-            <div class="mb-8" x-data="{ open: false }">
-                <div class="flex justify-between items-center mb-6 cursor-pointer" @click="open = !open">
+            <div class="mb-8">
+                <div class="flex justify-between items-center mb-6">
                     <h3 class="text-2xl font-bold text-gray-800">{{ __('Sales Report') }}</h3>
-                    <button class="text-gray-500 hover:text-cps-blue focus:outline-none">
-                        <svg class="w-6 h-6 transform transition-transform duration-200" :class="{'rotate-180': open}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                        </svg>
-                    </button>
                 </div>
                 
-                <div x-show="open" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 transform scale-95" x-transition:enter-end="opacity-100 transform scale-100" x-transition:leave="transition ease-in duration-100" x-transition:leave-start="opacity-100 transform scale-100" x-transition:leave-end="opacity-0 transform scale-95" style="display: none;">
+                <div>
                     <!-- Stats Cards -->
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
                         <!-- Total Revenue -->
                         <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg border-t-4 border-green-500 p-6">
                             <div class="flex items-center">
@@ -75,6 +53,19 @@
                             </div>
                         </div>
 
+                        <!-- Vessels Served -->
+                        <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg border-t-4 border-orange-500 p-6">
+                            <div class="flex items-center">
+                                <div class="p-3 rounded-full bg-orange-100 text-orange-500 mr-4">
+                                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                                </div>
+                                <div>
+                                    <p class="text-sm font-medium text-gray-600">{{ __('Vessels Served') }}</p>
+                                    <p class="text-2xl font-bold text-gray-900">{{ $vesselsCount ?? 0 }}</p>
+                                </div>
+                            </div>
+                        </div>
+
                         <!-- Total Products -->
                         <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg border-t-4 border-purple-500 p-6">
                             <div class="flex items-center">
@@ -84,6 +75,22 @@
                                 <div>
                                     <p class="text-sm font-medium text-gray-600">{{ __('Total Products') }}</p>
                                     <p class="text-2xl font-bold text-gray-900">{{ $productsCount }}</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Best Selling Product -->
+                        <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg border-t-4 border-red-500 p-6 col-span-1 md:col-span-4 lg:col-span-1">
+                            <div class="flex items-center">
+                                <div class="p-3 rounded-full bg-red-100 text-red-500 mr-4">
+                                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path></svg>
+                                </div>
+                                <div>
+                                    <p class="text-sm font-medium text-gray-600">{{ __('Best Selling') }}</p>
+                                    <p class="text-lg font-bold text-gray-900 truncate w-32" title="{{ $bestSellingProduct->product->name ?? 'N/A' }}">
+                                        {{ $bestSellingProduct->product->name ?? 'N/A' }}
+                                    </p>
+                                    <p class="text-xs text-gray-500">{{ $bestSellingProduct->total_qty ?? 0 }} {{ __('sold') }}</p>
                                 </div>
                             </div>
                         </div>
@@ -213,18 +220,13 @@
 
             @role('Branch Store')
             <!-- Reporting Section -->
-            <div class="mb-8" x-data="{ open: false }">
-                <div class="flex justify-between items-center mb-6 cursor-pointer" @click="open = !open">
+            <div class="mb-8">
+                <div class="flex justify-between items-center mb-6">
                     <h3 class="text-2xl font-bold text-gray-800">{{ __('My Performance') }}</h3>
-                    <button class="text-gray-500 hover:text-cps-blue focus:outline-none">
-                        <svg class="w-6 h-6 transform transition-transform duration-200" :class="{'rotate-180': open}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                        </svg>
-                    </button>
                 </div>
                 
-                <div x-show="open" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 transform scale-95" x-transition:enter-end="opacity-100 transform scale-100" x-transition:leave="transition ease-in duration-100" x-transition:leave-start="opacity-100 transform scale-100" x-transition:leave-end="opacity-0 transform scale-95" style="display: none;">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                <div>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
                         <!-- Total Revenue -->
                         <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg border-t-4 border-green-500 p-6">
                             <div class="flex items-center">
@@ -247,6 +249,35 @@
                                 <div>
                                     <p class="text-sm font-medium text-gray-600">{{ __('Total Orders') }}</p>
                                     <p class="text-2xl font-bold text-gray-900">{{ $ordersCount }}</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Vessels Served -->
+                        <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg border-t-4 border-orange-500 p-6">
+                            <div class="flex items-center">
+                                <div class="p-3 rounded-full bg-orange-100 text-orange-500 mr-4">
+                                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                                </div>
+                                <div>
+                                    <p class="text-sm font-medium text-gray-600">{{ __('Vessels Served') }}</p>
+                                    <p class="text-2xl font-bold text-gray-900">{{ $vesselsCount ?? 0 }}</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Best Selling Product -->
+                        <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg border-t-4 border-red-500 p-6">
+                            <div class="flex items-center">
+                                <div class="p-3 rounded-full bg-red-100 text-red-500 mr-4">
+                                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path></svg>
+                                </div>
+                                <div>
+                                    <p class="text-sm font-medium text-gray-600">{{ __('Best Selling') }}</p>
+                                    <p class="text-lg font-bold text-gray-900 truncate w-32" title="{{ $bestSellingProduct->product->name ?? 'N/A' }}">
+                                        {{ $bestSellingProduct->product->name ?? 'N/A' }}
+                                    </p>
+                                    <p class="text-xs text-gray-500">{{ $bestSellingProduct->total_qty ?? 0 }} {{ __('sold') }}</p>
                                 </div>
                             </div>
                         </div>
@@ -300,218 +331,11 @@
                 });
             </script>
 
-            <!-- Management Actions -->
-            <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg border-t-4 border-cps-blue mb-8">
-                <div class="p-6 text-gray-900">
-                    <h3 class="text-2xl font-bold mb-6 text-gray-800">{{ __('Management') }}</h3>
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                        <a href="{{ route('products.index') }}" class="block p-6 bg-gradient-to-br from-blue-50 to-blue-100 hover:from-blue-100 hover:to-blue-200 rounded-xl border-2 border-blue-200 hover:border-cps-blue transition duration-300 group transform hover:-translate-y-1">
-                            <div class="flex items-center mb-3">
-                                <svg class="w-10 h-10 text-cps-blue mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path>
-                                </svg>
-                                <h4 class="text-xl font-bold text-cps-blue">{{ __('Products') }}</h4>
-                            </div>
-                            <p class="text-gray-600">{{ __('Manage your product catalog') }}</p>
-                        </a>
-                        
-                        <a href="{{ route('categories.index') }}" class="block p-6 bg-gradient-to-br from-indigo-50 to-indigo-100 hover:from-indigo-100 hover:to-indigo-200 rounded-xl border-2 border-indigo-200 hover:border-indigo-600 transition duration-300 group transform hover:-translate-y-1">
-                            <div class="flex items-center mb-3">
-                                <svg class="w-10 h-10 text-indigo-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"></path>
-                                </svg>
-                                <h4 class="text-xl font-bold text-indigo-600">{{ __('Categories') }}</h4>
-                            </div>
-                            <p class="text-gray-600">{{ __('Organize product categories') }}</p>
-                        </a>
+            <!-- Management Actions removed as they are now in sidebar -->
 
-                        <a href="{{ route('users.index') }}" class="block p-6 bg-gradient-to-br from-purple-50 to-purple-100 hover:from-purple-100 hover:to-purple-200 rounded-xl border-2 border-purple-200 hover:border-purple-600 transition duration-300 group transform hover:-translate-y-1">
-                            <div class="flex items-center mb-3">
-                                <svg class="w-10 h-10 text-purple-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path>
-                                </svg>
-                                <h4 class="text-xl font-bold text-purple-600">{{ __('Users') }}</h4>
-                            </div>
-                            <p class="text-gray-600">{{ __('Manage team members') }}</p>
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Store Access Tokens -->
-            <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg border-t-4 border-cps-blue mb-8">
-                <div class="p-6 text-gray-900">
-                    <div class="mb-6">
-                        <h3 class="text-2xl font-bold text-gray-800 mb-2">{{ __('Store Access Tokens') }}</h3>
-                        <p class="text-gray-600">{{ __('Generate a temporary access token for customers to view the store.') }}</p>
-                    </div>
-                    
-                    <form action="{{ route('tokens.generate') }}" method="POST" class="space-y-4">
-                        @csrf
-                        <div>
-                            <label for="captain_name" class="block text-sm font-medium text-gray-700 mb-2">
-                                {{ __('Captain Name') }}
-                            </label>
-                            <input 
-                                type="text" 
-                                name="captain_name" 
-                                id="captain_name"
-                                required
-                                placeholder="{{ __('Enter captain name...') }}"
-                                class="block w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-cps-blue focus:border-cps-blue"
-                            >
-                            @error('captain_name')
-                                <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
-                            @enderror
-                        </div>
-
-                        <div>
-                            <label for="vessel_name" class="block text-sm font-medium text-gray-700 mb-2">
-                                {{ __('Vessel Name') }}
-                            </label>
-                            <input 
-                                type="text" 
-                                name="vessel_name" 
-                                id="vessel_name"
-                                placeholder="{{ __('Enter vessel name...') }}"
-                                class="block w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-cps-blue focus:border-cps-blue"
-                            >
-                            @error('vessel_name')
-                                <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
-                            @enderror
-                        </div>
-
-                        <button type="submit" class="bg-cps-blue text-white font-bold py-3 px-8 rounded-lg hover:bg-blue-800 transition duration-300 shadow-md inline-flex items-center">
-                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
-                            </svg>
-                            {{ __('Generate New Token') }}
-                        </button>
-                    </form>
-                    
-                    @if(session('success'))
-                        <div class="mt-6 bg-green-50 border-l-4 border-green-500 text-green-700 p-4 rounded-lg">
-                            <div class="flex items-start">
-                                <svg class="w-5 h-5 mr-3 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-                                </svg>
-                                <div class="flex-1">
-                                    <p class="font-semibold mb-1">{{ __('Token Generated!') }}</p>
-                                    <p class="text-sm">{{ session('success') }}</p>
-                                </div>
-                            </div>
-                        </div>
-                    @endif
-                </div>
-            </div>
-
-            <!-- Orders Section -->
-            <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg border-t-4 border-cps-blue">
-                <div class="p-6 text-gray-900">
-                    <div class="flex justify-between items-center mb-6">
-                        <h3 class="text-2xl font-bold text-gray-800">{{ __('My Orders') }}</h3>
-                    </div>
-                    @if($orders->count() > 0)
-                        <div class="overflow-x-auto">
-                            <table class="min-w-full divide-y divide-gray-200">
-                                <thead class="bg-gray-50">
-                                    <tr>
-                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{{ __('Order ID') }}</th>
-                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{{ __('Date') }}</th>
-                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{{ __('Total') }}</th>
-                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{{ __('Status') }}</th>
-                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{{ __('Action') }}</th>
-                                    </tr>
-                                </thead>
-                                <tbody class="bg-white divide-y divide-gray-200">
-                                    @foreach($orders as $order)
-                                    <tr>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">#{{ $order->id }}</td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $order->created_at->format('M d, Y') }}</td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 font-bold">${{ number_format($order->total, 2) }}</td>
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">
-                                                {{ $order->status }}
-                                            </span>
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                                            <a href="{{ route('orders.show', $order) }}" class="text-cps-blue hover:text-blue-900">{{ __('View') }}</a>
-                                        </td>
-                                    </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        </div>
-                    @else
-                        <p class="text-gray-500">{{ __('No orders found.') }}</p>
-                        <a href="{{ route('store') }}" class="mt-4 inline-block bg-cps-blue text-white font-bold py-2 px-4 rounded hover:bg-blue-800 transition duration-300">
-                            {{ __('Go to Store') }}
-                        </a>
-                    @endif
-                </div>
-            </div>
             @endrole
 
-            @role('Supplier')
-            <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg border-t-4 border-cps-blue mb-8">
-                <div class="p-6 text-gray-900">
-                    <h3 class="text-2xl font-bold mb-4 text-gray-800">{{ __('Store Access Tokens') }}</h3>
-                    <form action="{{ route('tokens.generate') }}" method="POST">
-                        @csrf
-                        <button type="submit" class="bg-cps-blue text-white font-bold py-2 px-6 rounded-full hover:bg-blue-800 transition duration-300">
-                            {{ __('Generate New Token') }}
-                        </button>
-                    </form>
-                    @if(session('success'))
-                        <div class="mt-4 bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative">
-                            {{ session('success') }}
-                        </div>
-                    @endif
-                </div>
-            </div>
 
-            <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg border-t-4 border-cps-blue">
-                <div class="p-6 text-gray-900">
-                    <h3 class="text-2xl font-bold mb-6 text-gray-800">{{ __('All Orders') }}</h3>
-                    @if($orders->count() > 0)
-                        <div class="overflow-x-auto">
-                            <table class="min-w-full divide-y divide-gray-200">
-                                <thead class="bg-gray-50">
-                                    <tr>
-                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{{ __('Order ID') }}</th>
-                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{{ __('Branch') }}</th>
-                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{{ __('Date') }}</th>
-                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{{ __('Total') }}</th>
-                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{{ __('Status') }}</th>
-                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{{ __('Action') }}</th>
-                                    </tr>
-                                </thead>
-                                <tbody class="bg-white divide-y divide-gray-200">
-                                    @foreach($orders as $order)
-                                    <tr>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">#{{ $order->id }}</td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $order->user->name }}</td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $order->created_at->format('M d, Y') }}</td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 font-bold">${{ number_format($order->total, 2) }}</td>
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">
-                                                {{ $order->status }}
-                                            </span>
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                                            <a href="{{ route('orders.show', $order) }}" class="text-cps-blue hover:text-blue-900">{{ __('Process') }}</a>
-                                        </td>
-                                    </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        </div>
-                    @else
-                        <p class="text-gray-500">{{ __('No orders received yet.') }}</p>
-                    @endif
-                </div>
-            </div>
-            @endrole
         </div>
     </div>
 </x-app-layout>

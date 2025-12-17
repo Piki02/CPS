@@ -7,6 +7,21 @@ use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
+    public function index()
+    {
+        $user = auth()->user();
+        
+        if ($user->hasRole('Admin') || $user->hasRole('Supplier')) {
+            $orders = Order::with('user')->latest()->get();
+        } else {
+            $orders = Order::where('user_id', $user->id)->latest()->get();
+        }
+
+        $ordersByStatus = $orders->groupBy('status');
+
+        return view('orders.index', compact('ordersByStatus'));
+    }
+
     public function show(Order $order)
     {
         // Ensure user is authorized to view this order

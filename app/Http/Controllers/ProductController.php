@@ -143,4 +143,10 @@ class ProductController extends Controller
         ]);
     }
 
+    public function exportPdf()
+    {
+        $products = \App\Models\Product::with('category')->get();
+        $pdf = \Barryvdh\DomPDF\Facade\Pdf::loadView('products.pdf', compact('products'));
+        return $pdf->stream('provisions-list.pdf');
+    }
 }

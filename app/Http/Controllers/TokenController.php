@@ -13,6 +13,12 @@ class TokenController extends Controller
         return view('auth.token');
     }
 
+    public function index()
+    {
+        $tokens = StoreToken::latest()->get();
+        return view('tokens.index', compact('tokens'));
+    }
+
     public function validateToken(Request $request)
     {
         $request->validate([

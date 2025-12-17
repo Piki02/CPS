@@ -3,24 +3,12 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
             <div class="flex">
-                <!-- Logo -->
-                <div class="shrink-0 flex items-center">
+                <!-- Logo (Mobile Only - or if you want it in top bar too, but sidebar has it) -->
+                <!-- We can hide this logo on desktop since sidebar has it, or keep it. Let's hide on desktop -->
+                <div class="shrink-0 flex items-center md:hidden">
                     <a href="{{ route('dashboard') }}">
                         <img src="{{ asset('Img/Logo sin Fondo.png') }}" alt="CPS Logo" class="block h-10 w-auto">
                     </a>
-                </div>
-
-                <!-- Navigation Links -->
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" class="text-gray-900 hover:text-cps-blue hover:border-cps-blue focus:text-cps-blue focus:border-cps-blue">
-                        {{ __('Dashboard') }}
-                    </x-nav-link>
-                    <x-nav-link :href="route('home')" :active="request()->routeIs('home')" class="text-gray-900 hover:text-cps-blue hover:border-cps-blue focus:text-cps-blue focus:border-cps-blue">
-                        {{ __('Home') }}
-                    </x-nav-link>
-                    <x-nav-link :href="route('store')" :active="request()->routeIs('store')" class="text-gray-900 hover:text-cps-blue hover:border-cps-blue focus:text-cps-blue focus:border-cps-blue">
-                        {{ __('Store') }}
-                    </x-nav-link>
                 </div>
             </div>
 
@@ -92,6 +80,18 @@
             </div>
 
             <div class="mt-3 space-y-1">
+                <!-- Language Switcher Mobile -->
+                <div class="px-4 py-2 border-b border-gray-100">
+                    <p class="text-xs text-gray-500 uppercase tracking-wider mb-2">{{ __('Language') }}</p>
+                    <div class="flex space-x-4">
+                        @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
+                            <a rel="alternate" hreflang="{{ $localeCode }}" href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}" class="text-sm font-medium {{ App::getLocale() == $localeCode ? 'text-cps-blue font-bold underline' : 'text-gray-600 hover:text-cps-blue' }}">
+                                {{ strtoupper($localeCode) }}
+                            </a>
+                        @endforeach
+                    </div>
+                </div>
+
                 <x-responsive-nav-link :href="route('profile.edit')">
                     {{ __('Profile') }}
                 </x-responsive-nav-link>
