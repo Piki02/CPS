@@ -11,8 +11,12 @@
                 <div class="p-6 text-gray-900">
                     <form method="POST" action="{{ route('products.store') }}" enctype="multipart/form-data">
                         @csrf
-                        
-                        <!-- Name -->
+
+
+
+
+
+
                         <div class="mb-4">
                             <label for="name" class="block text-gray-700 text-sm font-bold mb-2">{{ __('Name') }}</label>
                             <input type="text" name="name" id="name" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" value="{{ old('name') }}" required autofocus>

@@ -18,7 +18,7 @@
         <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-cps-black">
             <div>
                 <a href="/">
-                    <img src="{{ asset('img/Logo sin Fondo.png') }}" alt="CPS Logo" class="w-32 h-auto">
+                    <img src="{{ asset('Img/Logo sin Fondo.png') }}" alt="CPS Logo" class="w-32 h-auto">
                 </a>
             </div>
 

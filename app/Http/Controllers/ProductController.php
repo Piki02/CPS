@@ -7,6 +7,9 @@ use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Http\Request;
 use App\Models\Product; // Added this line
 
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
+
 class ProductController extends Controller
 {
     public function index(Request $request)
@@ -139,4 +142,5 @@ class ProductController extends Controller
             'Content-Disposition' => 'attachment; filename="' . $filename . '"',
         ]);
     }
+
 }

@@ -3,10 +3,10 @@
 @section('content')
     <!-- Hero Section -->
     <div class="relative bg-gradient-to-br from-cps-blue via-blue-800 to-indigo-900 py-24 overflow-hidden">
-        <div class="absolute inset-0 opacity-10" style="background-image: url('{{ asset('img/BARCO.jpg') }}'); background-size: cover; background-position: center;"></div>
+        <div class="absolute inset-0 opacity-10" style="background-image: url('{{ asset('Img/BARCO.jpg') }}'); background-size: cover; background-position: center;"></div>
         <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <div class="mb-8">
-                <img src="{{ asset('img/Logo Dorado.png') }}" alt="CPS Logo" class="h-24 w-auto mx-auto">
+                <img src="{{ asset('Img/Logo Dorado.png') }}" alt="CPS Logo" class="h-24 w-auto mx-auto">
             </div>
             <h1 class="text-6xl font-extrabold text-white mb-6">{{ __('About Us') }}</h1>
             <div class="max-w-4xl mx-auto">

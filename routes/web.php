@@ -58,6 +58,8 @@ Route::group(['prefix' => Mcamara\LaravelLocalization\Facades\LaravelLocalizatio
         Route::resource('users', App\Http\Controllers\UserController::class)->middleware(['role:Admin|Branch Store']);
 
         // Product Management
+        // Product Management
+        Route::post('/products/lookup', [App\Http\Controllers\ProductController::class, 'lookup'])->name('products.lookup');
         Route::resource('products', App\Http\Controllers\ProductController::class);
 
         // Category Management

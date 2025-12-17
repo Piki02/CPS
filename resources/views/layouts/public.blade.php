@@ -25,7 +25,7 @@
                         <!-- Logo -->
                         <div class="shrink-0 flex items-center">
                             <a href="{{ route('home') }}">
-                                <img src="{{ asset('img/Logo sin Fondo.png') }}" alt="CPS Logo" class="block h-10 w-auto">
+                                <img src="{{ asset('Img/Logo sin Fondo.png') }}" alt="CPS Logo" class="block h-10 w-auto">
                             </a>
                         </div>
 
@@ -140,6 +140,19 @@
                     <x-responsive-nav-link :href="route('contact')" :active="request()->routeIs('contact')">
                         {{ __('Contact') }}
                     </x-responsive-nav-link>
+
+                    @if (Route::has('login'))
+                        <div class="border-t border-gray-200 my-1"></div>
+                        @auth
+                            <x-responsive-nav-link :href="url('/dashboard')" :active="request()->routeIs('dashboard')">
+                                {{ __('Dashboard') }}
+                            </x-responsive-nav-link>
+                        @else
+                            <x-responsive-nav-link :href="route('login')" :active="request()->routeIs('login')">
+                                {{ __('Log in') }}
+                            </x-responsive-nav-link>
+                        @endauth
+                    @endif
                 </div>
             </div>
         </nav>
@@ -154,7 +167,7 @@
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
                     <div class="col-span-1 md:col-span-2">
-                        <img src="{{ asset('img/Logo Dorado.png') }}" alt="CPS Logo" class="h-12 mb-4">
+                        <img src="{{ asset('Img/Logo Dorado.png') }}" alt="CPS Logo" class="h-12 mb-4">
                         <p class="text-gray-300 text-sm leading-relaxed max-w-xs">
                             {{ __('Providing top-quality products and services for your business needs. Excellence is our standard.') }}
                         </p>
