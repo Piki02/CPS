@@ -61,4 +61,11 @@ class OrderController extends Controller
         $pdf = \Barryvdh\DomPDF\Facade\Pdf::loadView('orders.quotation', compact('order'));
         return $pdf->stream('quotation-'.$order->id.'.pdf');
     }
+
+    public function destroy(Order $order)
+    {
+        // Optional: Add authorization check here
+        $order->delete();
+        return redirect()->route('orders.index')->with('success', 'Order deleted successfully.');
+    }
 }

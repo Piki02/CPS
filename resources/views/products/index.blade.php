@@ -144,7 +144,12 @@
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap font-medium text-gray-900">{{ $product->name }}</td>
                                     <td class="px-6 py-4 whitespace-nowrap text-gray-500">{{ $product->category->name ?? 'Uncategorized' }}</td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-gray-900 font-bold">${{ number_format($product->price, 2) }}</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-gray-900 font-bold">
+                                        ${{ number_format($product->price, 2) }}
+                                        <div class="text-xs text-gray-500 font-normal">
+                                            Q{{ number_format($product->price * ($exchangeRate ?? 7.8), 2) }}
+                                        </div>
+                                    </td>
                                     <td class="px-6 py-4 whitespace-nowrap text-gray-500">{{ $product->unit }}</td>
                                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
                                         <a href="{{ route('products.edit', $product) }}" class="text-indigo-600 hover:text-indigo-900 mr-4">{{ __('Edit') }}</a>

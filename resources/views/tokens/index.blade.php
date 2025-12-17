@@ -73,9 +73,10 @@
                 </div>
             </div>
 
-            <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg border-t-4 border-gray-300">
+            <!-- Active Tokens -->
+            <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg border-t-4 border-green-500 mb-8">
                 <div class="p-6 text-gray-900">
-                    <h3 class="text-2xl font-bold mb-6 text-gray-800">{{ __('Recent Tokens') }}</h3>
+                    <h3 class="text-2xl font-bold mb-6 text-gray-800">{{ __('Active Tokens') }}</h3>
                     <div class="overflow-x-auto">
                         <table class="min-w-full divide-y divide-gray-200">
                             <thead class="bg-gray-50">
@@ -88,25 +89,64 @@
                                 </tr>
                             </thead>
                             <tbody class="bg-white divide-y divide-gray-200">
-                                @foreach($tokens as $token)
+                                @foreach($tokens->where('is_active', true) as $token)
                                 <tr>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-mono font-bold text-cps-blue">{{ $token->token }}</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-mono font-bold text-green-600">{{ $token->token }}</td>
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ $token->captain_name }}</td>
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $token->vessel_name ?? 'N/A' }}</td>
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $token->created_at->diffForHumans() }}</td>
                                     <td class="px-6 py-4 whitespace-nowrap">
-                                        @if($token->is_active)
-                                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                                {{ __('Active') }}
-                                            </span>
-                                        @else
-                                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
-                                                {{ __('Inactive') }}
-                                            </span>
-                                        @endif
+                                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                            {{ __('Active') }}
+                                        </span>
                                     </td>
                                 </tr>
                                 @endforeach
+                                @if($tokens->where('is_active', true)->isEmpty())
+                                    <tr>
+                                        <td colspan="5" class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center">{{ __('No active tokens found.') }}</td>
+                                    </tr>
+                                @endif
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Inactive Tokens -->
+            <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg border-t-4 border-red-500">
+                <div class="p-6 text-gray-900">
+                    <h3 class="text-2xl font-bold mb-6 text-gray-800">{{ __('Inactive Tokens') }}</h3>
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full divide-y divide-gray-200">
+                            <thead class="bg-gray-50">
+                                <tr>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{{ __('Token') }}</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{{ __('Captain') }}</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{{ __('Vessel') }}</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{{ __('Created At') }}</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{{ __('Status') }}</th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white divide-y divide-gray-200">
+                                @foreach($tokens->where('is_active', false) as $token)
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-mono font-bold text-red-600">{{ $token->token }}</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ $token->captain_name }}</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $token->vessel_name ?? 'N/A' }}</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $token->created_at->diffForHumans() }}</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
+                                            {{ __('Inactive') }}
+                                        </span>
+                                    </td>
+                                </tr>
+                                @endforeach
+                                @if($tokens->where('is_active', false)->isEmpty())
+                                    <tr>
+                                        <td colspan="5" class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center">{{ __('No inactive tokens found.') }}</td>
+                                    </tr>
+                                @endif
                             </tbody>
                         </table>
                     </div>

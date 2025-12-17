@@ -116,9 +116,9 @@ class CartController extends Controller
             ]);
         }
 
-        // Delete token after checkout
+        // Deactivate token after checkout
         if($token) {
-            StoreToken::where('token', $token)->delete();
+            StoreToken::where('token', $token)->update(['is_active' => false]);
         }
 
         // Clear cart and session

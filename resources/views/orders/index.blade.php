@@ -68,7 +68,14 @@
                                                 </span>
                                             </td>
                                             <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                                                <a href="{{ route('orders.show', $order) }}" class="text-cps-blue hover:text-blue-900">{{ __('View Details') }}</a>
+                                                <div class="flex items-center gap-3">
+                                                    <a href="{{ route('orders.show', $order) }}" class="text-cps-blue hover:text-blue-900">{{ __('View Details') }}</a>
+                                                    <form action="{{ route('orders.destroy', $order) }}" method="POST" class="inline-block delete-form">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="button" class="text-red-600 hover:text-red-900 text-sm delete-btn">{{ __('Delete') }}</button>
+                                                    </form>
+                                                </div>
                                             </td>
                                         </tr>
                                         @endforeach
@@ -79,6 +86,33 @@
                     </div>
                 @endif
             @endforeach
+
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    const deleteButtons = document.querySelectorAll('.delete-btn');
+                    deleteButtons.forEach(button => {
+                        button.addEventListener('click', function(e) {
+                            e.preventDefault();
+                            const form = this.closest('.delete-form');
+                            
+                            Swal.fire({
+                                title: '{{ __("Are you sure?") }}',
+                                text: '{{ __("You will not be able to recover this order!") }}',
+                                icon: 'warning',
+                                showCancelButton: true,
+                                confirmButtonColor: '#d33',
+                                cancelButtonColor: '#3085d6',
+                                confirmButtonText: '{{ __("Yes, delete it!") }}',
+                                cancelButtonText: '{{ __("Cancel") }}'
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    form.submit();
+                                }
+                            });
+                        });
+                    });
+                });
+            </script>
 
             @if($ordersByStatus->isEmpty())
                 <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg border-t-4 border-gray-300">

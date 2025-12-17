@@ -38,7 +38,9 @@ class DashboardController extends Controller
 
             $vesselsCount = \App\Models\Order::whereNotNull('vessel_name')->distinct('vessel_name')->count('vessel_name');
 
-            return view('dashboard', compact('productsCount', 'ordersCount', 'usersCount', 'totalRevenue', 'monthlySales', 'topProducts', 'vesselsCount', 'bestSellingProduct'));
+            $exchangeRate = \App\Models\Setting::where('key', 'exchange_rate')->value('value') ?? 7.8;
+
+            return view('dashboard', compact('productsCount', 'ordersCount', 'usersCount', 'totalRevenue', 'monthlySales', 'topProducts', 'vesselsCount', 'bestSellingProduct', 'exchangeRate'));
         } 
         elseif ($user->hasRole('Branch Store')) {
             $orders = \App\Models\Order::where('user_id', $user->id)->latest()->get();
@@ -75,5 +77,19 @@ class DashboardController extends Controller
         }
 
         return view('dashboard');
+    }
+
+    public function updateExchangeRate(Request $request)
+    {
+        $request->validate([
+            'exchange_rate' => 'required|numeric|min:0',
+        ]);
+
+        \App\Models\Setting::updateOrCreate(
+            ['key' => 'exchange_rate'],
+            ['value' => $request->exchange_rate]
+        );
+
+        return redirect()->back()->with('success', 'Exchange rate updated successfully.');
     }
 }

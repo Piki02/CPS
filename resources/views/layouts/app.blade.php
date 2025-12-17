@@ -6,6 +6,7 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
         <title>{{ config('app.name', 'Laravel') }}</title>
+        <link rel="icon" href="{{ asset('Img/Logo Dorado.png') }}" type="image/png">
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
@@ -38,5 +39,47 @@
                 </main>
             </div>
         </div>
+        </div>
+
+        <!-- SweetAlert2 -->
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script>
+            // Toast Configuration
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            });
+
+            // Success Message
+            @if(session('success'))
+                Toast.fire({
+                    icon: 'success',
+                    title: '{{ session('success') }}'
+                });
+            @endif
+
+            // Error Message
+            @if(session('error'))
+                Toast.fire({
+                    icon: 'error',
+                    title: '{{ session('error') }}'
+                });
+            @endif
+
+            // Validation Errors
+            @if($errors->any())
+                Toast.fire({
+                    icon: 'error',
+                    title: 'Please check the form for errors.'
+                });
+            @endif
+        </script>
     </body>
 </html>

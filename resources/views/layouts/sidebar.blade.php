@@ -83,6 +83,25 @@
             @endrole
         </nav>
         <div class="border-t border-gray-700 p-4">
+            <!-- Exchange Rate (Admin & Branch Store) -->
+            @role('Admin|Branch Store')
+            <div class="mb-4 px-2">
+                @php
+                    $currentRate = \App\Models\Setting::where('key', 'exchange_rate')->value('value') ?? 7.8;
+                @endphp
+                <form action="{{ route('dashboard.update-exchange-rate') }}" method="POST" class="bg-gray-700 p-2 rounded-md">
+                    @csrf
+                    <label class="block text-xs text-gray-400 mb-1">{{ __('USD to GTQ Rate') }}</label>
+                    <div class="flex gap-1">
+                        <input type="number" step="0.01" name="exchange_rate" value="{{ $currentRate }}" class="w-full px-2 py-1 text-sm bg-gray-600 border border-gray-500 rounded text-white focus:ring-cps-blue focus:border-cps-blue">
+                        <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white px-2 py-1 rounded text-xs">
+                            {{ __('Update') }}
+                        </button>
+                    </div>
+                </form>
+            </div>
+            @endrole
+
             <!-- Language Switcher -->
             <div class="flex justify-center space-x-4 mb-4">
                 @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)

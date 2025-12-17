@@ -36,6 +36,7 @@ Route::group(['prefix' => Mcamara\LaravelLocalization\Facades\LaravelLocalizatio
     Route::post('/cart/checkout', [App\Http\Controllers\CartController::class, 'checkout'])->name('cart.checkout')->middleware('check.token');
 
     Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
+    Route::post('/dashboard/exchange-rate', [App\Http\Controllers\DashboardController::class, 'updateExchangeRate'])->middleware(['auth', 'verified'])->name('dashboard.update-exchange-rate');
 
     Route::middleware('auth')->group(function () {
         Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -71,6 +72,7 @@ Route::group(['prefix' => Mcamara\LaravelLocalization\Facades\LaravelLocalizatio
         Route::get('/orders', [App\Http\Controllers\OrderController::class, 'index'])->name('orders.index');
         Route::get('/orders/{order}', [App\Http\Controllers\OrderController::class, 'show'])->name('orders.show');
         Route::put('/orders/{order}', [App\Http\Controllers\OrderController::class, 'update'])->name('orders.update');
+        Route::delete('/orders/{order}', [App\Http\Controllers\OrderController::class, 'destroy'])->name('orders.destroy');
         Route::get('/orders/{order}/quotation', [App\Http\Controllers\OrderController::class, 'generateQuotation'])->name('orders.quotation');
     });
 

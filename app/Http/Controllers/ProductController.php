@@ -28,8 +28,9 @@ class ProductController extends Controller
         
         $products = $query->paginate(15);
         $categories = \App\Models\Category::all();
+        $exchangeRate = \App\Models\Setting::where('key', 'exchange_rate')->value('value') ?? 7.8;
         
-        return view('products.index', compact('products', 'categories'));
+        return view('products.index', compact('products', 'categories', 'exchangeRate'));
     }
 
     public function create()
