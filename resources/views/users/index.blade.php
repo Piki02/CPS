@@ -6,12 +6,12 @@
     </x-slot>
 
     <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg border-t-4 border-cps-gold">
                 <div class="p-6 text-gray-900">
-                    <div class="flex justify-between items-center mb-6">
+                    <div class="flex flex-col md:flex-row justify-between items-center mb-6 gap-4">
                         <h3 class="text-2xl font-bold text-gray-800">{{ __('All Users') }}</h3>
-                        <a href="{{ route('users.create') }}" class="bg-black text-white font-bold py-2 px-4 rounded hover:bg-cps-gold hover:text-black transition duration-300">
+                        <a href="{{ route('users.create') }}" class="bg-black text-white font-bold py-2 px-4 rounded hover:bg-cps-gold hover:text-black transition duration-300 w-full md:w-auto text-center">
                             {{ __('Create New User') }}
                         </a>
                     </div>

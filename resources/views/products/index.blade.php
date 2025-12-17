@@ -6,7 +6,7 @@
     </x-slot>
 
     <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <!-- Search and Filters -->
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg border-t-4 border-cps-blue mb-6">
                 <div class="p-6">
@@ -90,22 +90,22 @@
             <!-- Products Table -->
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg border-t-4 border-cps-blue">
                 <div class="p-6">
-                    <div class="flex justify-between items-center mb-6">
+                    <div class="flex flex-col md:flex-row justify-between items-center mb-6 gap-4">
                         <h3 class="text-2xl font-bold text-gray-800">{{ __('Product List') }}</h3>
-                        <div class="flex gap-3">
-                            <a href="{{ route('products.import-export') }}" class="bg-green-600 text-white font-bold py-2 px-6 rounded-lg hover:bg-green-700 transition duration-300 inline-flex items-center">
+                        <div class="flex flex-col md:flex-row gap-3 w-full md:w-auto">
+                            <a href="{{ route('products.import-export') }}" class="bg-green-600 text-white font-bold py-2 px-6 rounded-lg hover:bg-green-700 transition duration-300 inline-flex items-center justify-center">
                                 <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4"></path>
                                 </svg>
                                 {{ __('Import / Export') }}
                             </a>
-                            <a href="{{ route('products.export-pdf') }}" class="bg-red-600 text-white font-bold py-2 px-6 rounded-lg hover:bg-red-700 transition duration-300 inline-flex items-center" target="_blank">
+                            <a href="{{ route('products.export-pdf') }}" class="bg-red-600 text-white font-bold py-2 px-6 rounded-lg hover:bg-red-700 transition duration-300 inline-flex items-center justify-center" target="_blank">
                                 <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
                                 </svg>
                                 {{ __('Export PDF') }}
                             </a>
-                            <a href="{{ route('products.create') }}" class="bg-cps-blue text-white font-bold py-2 px-6 rounded-lg hover:bg-blue-800 transition duration-300 inline-flex items-center">
+                            <a href="{{ route('products.create') }}" class="bg-cps-blue text-white font-bold py-2 px-6 rounded-lg hover:bg-blue-800 transition duration-300 inline-flex items-center justify-center">
                                 <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
                                 </svg>

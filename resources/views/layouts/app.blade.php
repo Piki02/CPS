@@ -19,7 +19,7 @@
         <div class="min-h-screen bg-gray-100 flex">
             @include('layouts.sidebar')
 
-            <div class="flex-1 flex flex-col md:ml-64 transition-all duration-300">
+            <div class="flex-1 flex flex-col md:ml-64 transition-all duration-300 min-w-0 overflow-x-hidden">
                 <div class="md:hidden">
                     @include('layouts.navigation')
                 </div>
