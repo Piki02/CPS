@@ -108,7 +108,7 @@
                         <!-- Product Image -->
                         <div class="relative h-56 bg-gradient-to-br from-gray-100 to-gray-200 overflow-hidden group">
                             @if($product->image_path)
-                                <img src="{{ asset($product->image_path) }}" alt="{{ $product->name }}" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                                <img src="{{ str_starts_with($product->image_path, 'products/') ? asset('storage/' . $product->image_path) : asset($product->image_path) }}" alt="{{ $product->name }}" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
                             @else
                                 <div class="w-full h-full flex items-center justify-center">
                                     <svg class="w-20 h-20 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
