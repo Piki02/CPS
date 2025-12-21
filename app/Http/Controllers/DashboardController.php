@@ -9,16 +9,25 @@ class DashboardController extends Controller
     public function index()
     {
         $user = auth()->user();
-        
+
+        // Initialize default values for all possible variables
+        $productsCount = 0;
+        $ordersCount = 0;
+        $usersCount = 0;
+        $totalRevenue = 0;
+        $vesselsCount = 0;
+        $exchangeRate = \App\Models\Setting::where('key', 'exchange_rate')->value('value') ?? 7.8;
+        $monthlySales = collect();
+        $topProducts = collect();
+        $bestSellingProduct = null;
+        $orders = collect();
+
         if ($user->hasRole('Admin')) {
             $productsCount = \App\Models\Product::count();
             $ordersCount = \App\Models\Order::count();
             $usersCount = \App\Models\User::count();
-
-            // Reporting Data
             $totalRevenue = \App\Models\Order::sum('total');
-            
-            // Monthly Sales (Last 6 months)
+
             $monthlySales = \App\Models\Order::selectRaw('DATE_FORMAT(created_at, "%Y-%m") as month, SUM(total) as total')
                 ->groupBy('month')
                 ->orderBy('month', 'desc')
@@ -26,7 +35,6 @@ class DashboardController extends Controller
                 ->get()
                 ->reverse();
 
-            // Top 5 Products
             $topProducts = \App\Models\OrderItem::select('product_id', \Illuminate\Support\Facades\DB::raw('SUM(quantity) as total_qty'))
                 ->with('product')
                 ->groupBy('product_id')
@@ -35,32 +43,28 @@ class DashboardController extends Controller
                 ->get();
 
             $bestSellingProduct = $topProducts->first();
-
             $vesselsCount = \App\Models\Order::whereNotNull('vessel_name')->distinct('vessel_name')->count('vessel_name');
-
-            $exchangeRate = \App\Models\Setting::where('key', 'exchange_rate')->value('value') ?? 7.8;
-
-            return view('dashboard', compact('productsCount', 'ordersCount', 'usersCount', 'totalRevenue', 'monthlySales', 'topProducts', 'vesselsCount', 'bestSellingProduct', 'exchangeRate'));
-        } 
-        elseif ($user->hasRole('Branch Store')) {
+        } elseif ($user->hasRole('Branch Store')) {
             $orders = \App\Models\Order::where('user_id', $user->id)->latest()->get();
-            
-            // Reporting Data for Branch
-            $totalRevenue = $orders->sum('total');
             $ordersCount = $orders->count();
+            $totalRevenue = $orders->sum('total');
             $vesselsCount = \App\Models\Order::where('user_id', $user->id)->whereNotNull('vessel_name')->distinct('vessel_name')->count('vessel_name');
-            
-            // Best Selling Product for Branch
-            $bestSellingProduct = \App\Models\OrderItem::whereHas('order', function($query) use ($user) {
-                    $query->where('user_id', $user->id);
-                })
+
+            // Branch specific products and sales
+            $productsCount = \App\Models\Product::count(); // Total products are still global
+
+            $topProducts = \App\Models\OrderItem::whereHas('order', function ($query) use ($user) {
+                $query->where('user_id', $user->id);
+            })
                 ->select('product_id', \Illuminate\Support\Facades\DB::raw('SUM(quantity) as total_qty'))
                 ->with('product')
                 ->groupBy('product_id')
                 ->orderByDesc('total_qty')
-                ->first();
+                ->take(5)
+                ->get();
 
-            // Monthly Sales (Last 6 months)
+            $bestSellingProduct = $topProducts->first();
+
             $monthlySales = \App\Models\Order::where('user_id', $user->id)
                 ->selectRaw('DATE_FORMAT(created_at, "%Y-%m") as month, SUM(total) as total')
                 ->groupBy('month')
@@ -68,15 +72,23 @@ class DashboardController extends Controller
                 ->take(6)
                 ->get()
                 ->reverse();
-
-            return view('dashboard', compact('orders', 'totalRevenue', 'ordersCount', 'monthlySales', 'vesselsCount', 'bestSellingProduct'));
-        } 
-        elseif ($user->hasRole('Supplier')) {
+        } elseif ($user->hasRole('Supplier')) {
             $orders = \App\Models\Order::where('user_id', $user->id)->latest()->get();
-            return view('dashboard', compact('orders'));
+            $ordersCount = $orders->count();
         }
 
-        return view('dashboard');
+        return view('dashboard', compact(
+            'productsCount',
+            'ordersCount',
+            'usersCount',
+            'totalRevenue',
+            'monthlySales',
+            'topProducts',
+            'vesselsCount',
+            'bestSellingProduct',
+            'exchangeRate',
+            'orders'
+        ));
     }
 
     public function updateExchangeRate(Request $request)
