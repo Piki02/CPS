@@ -51,17 +51,19 @@ class ProductController extends Controller
             $image = $request->file('image');
             $imageName = time() . '_' . $image->getClientOriginalName();
 
-            // 1. Save in normal storage
-            $image->storeAs('products', $imageName, 'public');
+            // 1. Save in normal storage (storage/app/public/products)
+            $path = $image->storeAs('products', $imageName, 'public');
 
-            // 2. Copy to public/storage
-            if (!file_exists(public_path('storage/products'))) {
-                mkdir(public_path('storage/products'), 0755, true);
+            // 2. Copy to public/storage (using File facade for robustness)
+            $publicStoragePath = public_path('storage/products');
+            if (!\Illuminate\Support\Facades\File::exists($publicStoragePath)) {
+                \Illuminate\Support\Facades\File::makeDirectory($publicStoragePath, 0755, true);
             }
-            copy(storage_path('app/public/products/' . $imageName), public_path('storage/products/' . $imageName));
 
-            // 3. Save path in DB
-            $data['image_path'] = 'products/' . $imageName;
+            \Illuminate\Support\Facades\File::copy(storage_path('app/public/' . $path), $publicStoragePath . '/' . $imageName);
+
+            // 3. Save relative path in DB
+            $data['image_path'] = 'storage/products/' . $imageName;
         }
 
         \App\Models\Product::create($data);
@@ -91,17 +93,19 @@ class ProductController extends Controller
             $image = $request->file('image');
             $imageName = time() . '_' . $image->getClientOriginalName();
 
-            // 1. Save in normal storage
-            $image->storeAs('products', $imageName, 'public');
+            // 1. Save in normal storage (storage/app/public/products)
+            $path = $image->storeAs('products', $imageName, 'public');
 
             // 2. Copy to public/storage
-            if (!file_exists(public_path('storage/products'))) {
-                mkdir(public_path('storage/products'), 0755, true);
+            $publicStoragePath = public_path('storage/products');
+            if (!\Illuminate\Support\Facades\File::exists($publicStoragePath)) {
+                \Illuminate\Support\Facades\File::makeDirectory($publicStoragePath, 0755, true);
             }
-            copy(storage_path('app/public/products/' . $imageName), public_path('storage/products/' . $imageName));
 
-            // 3. Save path in DB
-            $data['image_path'] = 'products/' . $imageName;
+            \Illuminate\Support\Facades\File::copy(storage_path('app/public/' . $path), $publicStoragePath . '/' . $imageName);
+
+            // 3. Save relative path in DB
+            $data['image_path'] = 'storage/products/' . $imageName;
         }
 
         $product->update($data);

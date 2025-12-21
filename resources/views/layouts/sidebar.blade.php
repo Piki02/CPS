@@ -128,11 +128,11 @@
                 <div class="absolute -top-10 left-0 right-0 bg-blue-600 text-[10px] text-white py-1 px-2 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-center pointer-events-none">
                     {{ __('USD to GTQ Exchange Rate') }}
                 </div>
-                <div class="flex items-center bg-gray-900/50 border border-white/10 rounded-xl overflow-hidden focus-within:border-blue-500/50 transition-colors">
+                <div class="flex items-center bg-gray-900/50 border border-white/10 rounded-xl overflow-hidden focus-within:border-blue-500/50 transition-colors w-full">
                     <span class="pl-3 text-xs text-blue-400 font-bold">$</span>
                     <input type="number" step="0.000001" name="exchange_rate" value="{{ $currentRate }}"
                         class="w-full px-2 py-2 text-xs bg-transparent border-0 text-white focus:ring-0 placeholder-gray-600">
-                    <button type="submit" class="bg-blue-600 hover:bg-blue-500 text-white p-2 transition-colors">
+                    <button type="submit" class="bg-blue-600 hover:bg-blue-500 text-white p-2 transition-colors shrink-0">
                         <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
                         </svg>

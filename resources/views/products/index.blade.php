@@ -173,7 +173,7 @@
                                     <td
                                         class="px-6 py-5 bg-gray-50 group-hover:bg-white rounded-r-[1.5rem] border-y border-r border-transparent group-hover:border-blue-100 text-right transition-all shadow-sm">
                                         <div class="flex items-center justify-end gap-2">
-                                            <a href="{{ route('products.edit', $product) }}"
+                                            <a href="{{ route('products.edit', [$product, 'page' => request('page'), 'search' => request('search'), 'category' => request('category')]) }}"
                                                 class="p-2.5 text-cps-blue bg-white rounded-xl border border-gray-200 hover:bg-cps-blue hover:text-white hover:border-cps-blue hover:shadow-lg transition-all">
                                                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
