@@ -1,20 +1,20 @@
-<div class="hidden md:flex flex-col w-72 bg-gradient-to-b from-[#001c3d] to-[#000d1a] h-screen fixed shadow-2xl z-50">
+<div class="hidden md:flex flex-col w-64 bg-gradient-to-b from-[#001c3d] to-[#000d1a] h-screen fixed shadow-2xl z-50">
     <!-- Brand / Logo -->
-    <div class="flex items-center justify-center h-24 px-6">
+    <div class="flex items-center justify-center h-20 px-6">
         <a href="{{ route('dashboard') }}" class="group transition-transform duration-300 hover:scale-105">
             <img src="{{ asset('Img/Logo sin Fondo.png') }}" alt="CPS Logo" class="h-14 w-auto drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]">
         </a>
     </div>
 
     <!-- Navigation -->
-    <div class="flex-1 flex flex-col overflow-y-auto px-4 py-6 no-scrollbar">
+    <div class="flex-1 flex flex-col overflow-y-auto px-4 py-4 no-scrollbar">
         <nav class="space-y-2">
             <!-- Section: General -->
-            <div class="mb-6">
-                <p class="px-4 text-[10px] font-bold text-gray-400 uppercase tracking-[2px] mb-4">{{ __('General') }}</p>
+            <div class="mb-4">
+                <p class="px-4 text-[10px] font-bold text-gray-400 uppercase tracking-[2px] mb-3">{{ __('General') }}</p>
                 
                 <x-nav-link :href="route('home')" :active="request()->routeIs('home')"
-                    class="group flex items-center px-4 py-3 rounded-xl transition-all duration-300 {{ request()->routeIs('home') ? 'bg-white/10 text-white shadow-lg backdrop-blur-md' : 'text-gray-400 hover:bg-white/5 hover:text-gray-200' }}">
+                    class="group flex items-center px-4 py-2.5 rounded-xl transition-all duration-300 {{ request()->routeIs('home') ? 'bg-white/10 text-white shadow-lg backdrop-blur-md' : 'text-gray-400 hover:bg-white/5 hover:text-gray-200' }}">
                     <div class="flex items-center w-full">
                         <div class="p-2 rounded-lg mr-3 transition-colors {{ request()->routeIs('home') ? 'bg-blue-500/20 text-blue-400' : 'bg-gray-800/50 text-gray-500 group-hover:text-gray-300' }}">
                             <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -26,7 +26,7 @@
                 </x-nav-link>
 
                 <x-nav-link :href="route('store')" :active="request()->routeIs('store')"
-                    class="group flex items-center px-4 py-3 rounded-xl transition-all duration-300 {{ request()->routeIs('store') ? 'bg-white/10 text-white shadow-lg backdrop-blur-md' : 'text-gray-400 hover:bg-white/5 hover:text-gray-200' }} mt-2">
+                    class="group flex items-center px-4 py-2.5 rounded-xl transition-all duration-300 {{ request()->routeIs('store') ? 'bg-white/10 text-white shadow-lg backdrop-blur-md' : 'text-gray-400 hover:bg-white/5 hover:text-gray-200' }} mt-2">
                     <div class="flex items-center w-full">
                         <div class="p-2 rounded-lg mr-3 transition-colors {{ request()->routeIs('store') ? 'bg-indigo-500/20 text-indigo-400' : 'bg-gray-800/50 text-gray-500 group-hover:text-gray-300' }}">
                             <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -40,11 +40,11 @@
 
             @role('Admin|Branch Store|Supplier')
             <!-- Section: Commerce -->
-            <div class="mb-6">
-                <p class="px-4 text-[10px] font-bold text-gray-400 uppercase tracking-[2px] mb-4">{{ __('Commerce') }}</p>
+            <div class="mb-4">
+                <p class="px-4 text-[10px] font-bold text-gray-400 uppercase tracking-[2px] mb-3">{{ __('Commerce') }}</p>
                 
                 <x-nav-link :href="route('orders.index')" :active="request()->routeIs('orders.*')"
-                    class="group flex items-center px-4 py-3 rounded-xl transition-all duration-300 {{ request()->routeIs('orders.*') ? 'bg-white/10 text-white shadow-lg backdrop-blur-md' : 'text-gray-400 hover:bg-white/5 hover:text-gray-200' }}">
+                    class="group flex items-center px-4 py-2.5 rounded-xl transition-all duration-300 {{ request()->routeIs('orders.*') ? 'bg-white/10 text-white shadow-lg backdrop-blur-md' : 'text-gray-400 hover:bg-white/5 hover:text-gray-200' }}">
                     <div class="flex items-center w-full">
                         <div class="p-2 rounded-lg mr-3 transition-colors {{ request()->routeIs('orders.*') ? 'bg-emerald-500/20 text-emerald-400' : 'bg-gray-800/50 text-gray-500 group-hover:text-gray-300' }}">
                             <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -56,7 +56,7 @@
                 </x-nav-link>
 
                 <x-nav-link :href="route('tokens.index')" :active="request()->routeIs('tokens.*')"
-                    class="group flex items-center px-4 py-3 rounded-xl transition-all duration-300 {{ request()->routeIs('tokens.*') ? 'bg-white/10 text-white shadow-lg backdrop-blur-md' : 'text-gray-400 hover:bg-white/5 hover:text-gray-200' }} mt-2">
+                    class="group flex items-center px-4 py-2.5 rounded-xl transition-all duration-300 {{ request()->routeIs('tokens.*') ? 'bg-white/10 text-white shadow-lg backdrop-blur-md' : 'text-gray-400 hover:bg-white/5 hover:text-gray-200' }} mt-2">
                     <div class="flex items-center w-full">
                         <div class="p-2 rounded-lg mr-3 transition-colors {{ request()->routeIs('tokens.*') ? 'bg-amber-500/20 text-amber-400' : 'bg-gray-800/50 text-gray-500 group-hover:text-gray-300' }}">
                             <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -71,12 +71,12 @@
 
             @role('Admin|Branch Store')
             <!-- Section: Management -->
-            <div class="mb-6">
-                <p class="px-4 text-[10px] font-bold text-gray-400 uppercase tracking-[2px] mb-4">{{ __('Management') }}</p>
+            <div class="mb-4">
+                <p class="px-4 text-[10px] font-bold text-gray-400 uppercase tracking-[2px] mb-3">{{ __('Management') }}</p>
                 
                 <div class="space-y-2">
                     <x-nav-link :href="route('products.index')" :active="request()->routeIs('products.*')"
-                        class="group flex items-center px-4 py-3 rounded-xl transition-all duration-300 {{ request()->routeIs('products.*') ? 'bg-white/10 text-white shadow-lg backdrop-blur-md' : 'text-gray-400 hover:bg-white/5 hover:text-gray-200' }}">
+                        class="group flex items-center px-4 py-2.5 rounded-xl transition-all duration-300 {{ request()->routeIs('products.*') ? 'bg-white/10 text-white shadow-lg backdrop-blur-md' : 'text-gray-400 hover:bg-white/5 hover:text-gray-200' }}">
                         <div class="flex items-center w-full">
                             <div class="p-2 rounded-lg mr-3 transition-colors {{ request()->routeIs('products.*') ? 'bg-blue-400/20 text-blue-300' : 'bg-gray-800/50 text-gray-500 group-hover:text-gray-300' }}">
                                 <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -88,7 +88,7 @@
                     </x-nav-link>
 
                     <x-nav-link :href="route('categories.index')" :active="request()->routeIs('categories.*')"
-                        class="group flex items-center px-4 py-3 rounded-xl transition-all duration-300 {{ request()->routeIs('categories.*') ? 'bg-white/10 text-white shadow-lg backdrop-blur-md' : 'text-gray-400 hover:bg-white/5 hover:text-gray-200' }}">
+                        class="group flex items-center px-4 py-2.5 rounded-xl transition-all duration-300 {{ request()->routeIs('categories.*') ? 'bg-white/10 text-white shadow-lg backdrop-blur-md' : 'text-gray-400 hover:bg-white/5 hover:text-gray-200' }}">
                         <div class="flex items-center w-full">
                             <div class="p-2 rounded-lg mr-3 transition-colors {{ request()->routeIs('categories.*') ? 'bg-purple-500/20 text-purple-400' : 'bg-gray-800/50 text-gray-500 group-hover:text-gray-300' }}">
                                 <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -100,7 +100,7 @@
                     </x-nav-link>
 
                     <x-nav-link :href="route('users.index')" :active="request()->routeIs('users.*')"
-                        class="group flex items-center px-4 py-3 rounded-xl transition-all duration-300 {{ request()->routeIs('users.*') ? 'bg-white/10 text-white shadow-lg backdrop-blur-md' : 'text-gray-400 hover:bg-white/5 hover:text-gray-200' }}">
+                        class="group flex items-center px-4 py-2.5 rounded-xl transition-all duration-300 {{ request()->routeIs('users.*') ? 'bg-white/10 text-white shadow-lg backdrop-blur-md' : 'text-gray-400 hover:bg-white/5 hover:text-gray-200' }}">
                         <div class="flex items-center w-full">
                             <div class="p-2 rounded-lg mr-3 transition-colors {{ request()->routeIs('users.*') ? 'bg-pink-500/20 text-pink-400' : 'bg-gray-800/50 text-gray-500 group-hover:text-gray-300' }}">
                                 <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -117,9 +117,9 @@
     </div>
 
     <!-- Bottom Actions -->
-    <div class="p-6 bg-[#001226]/50 backdrop-blur-xl border-t border-white/5">
+    <div class="p-4 bg-[#001226]/50 backdrop-blur-xl border-t border-white/5">
         @role('Admin|Branch Store')
-        <div class="mb-6">
+        <div class="mb-4">
             @php
                 $currentRate = \App\Models\Setting::where('key', 'exchange_rate')->value('value') ?? 7.8;
             @endphp
@@ -143,9 +143,9 @@
         @endrole
 
         <!-- User Profile -->
-        <div class="flex items-center justify-between mb-6">
+        <div class="flex items-center justify-between mb-4">
             <div class="flex items-center min-w-0">
-                <div class="h-10 w-10 shrink-0 rounded-xl bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center text-white font-bold shadow-lg border border-white/10">
+                <div class="h-9 w-9 shrink-0 rounded-xl bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center text-white font-bold shadow-lg border border-white/10">
                     {{ substr(Auth::user()->name, 0, 1) }}
                 </div>
                 <div class="ml-3 min-w-0">
@@ -170,7 +170,7 @@
 
         <form method="POST" action="{{ route('logout') }}">
             @csrf
-            <button type="submit" class="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-red-500/10 text-red-400 hover:bg-red-500/20 transition-all duration-300 font-bold text-sm border border-red-500/20">
+            <button type="submit" class="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-red-500/10 text-red-400 hover:bg-red-500/20 transition-all duration-300 font-bold text-sm border border-red-500/20">
                 <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
                 </svg>
