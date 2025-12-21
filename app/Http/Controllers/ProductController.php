@@ -7,30 +7,26 @@ use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Http\Request;
 use App\Models\Product; // Added this line
 
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Str;
-
 class ProductController extends Controller
 {
     public function index(Request $request)
     {
         $query = Product::with('category');
-        
+
         // Search by name
         if ($request->filled('search')) {
             $query->where('name', 'like', '%' . $request->search . '%');
         }
-        
+
         // Filter by category
         if ($request->filled('category')) {
             $query->where('category_id', $request->category);
         }
-        
+
         $products = $query->paginate(15);
         $categories = \App\Models\Category::all();
-        $exchangeRate = \App\Models\Setting::where('key', 'exchange_rate')->value('value') ?? 7.8;
-        
-        return view('products.index', compact('products', 'categories', 'exchangeRate'));
+
+        return view('products.index', compact('products', 'categories'));
     }
 
     public function create()
@@ -49,11 +45,23 @@ class ProductController extends Controller
             'image' => 'nullable|image|max:2048',
         ]);
 
-        $data = $request->all();
+        $data = $request->except('image');
 
         if ($request->hasFile('image')) {
-            $path = $request->file('image')->store('products', 'public');
-            $data['image_path'] = 'storage/' . $path;
+            $image = $request->file('image');
+            $imageName = time() . '_' . $image->getClientOriginalName();
+
+            // 1. Save in normal storage
+            $image->storeAs('products', $imageName, 'public');
+
+            // 2. Copy to public/storage
+            if (!file_exists(public_path('storage/products'))) {
+                mkdir(public_path('storage/products'), 0755, true);
+            }
+            copy(storage_path('app/public/products/' . $imageName), public_path('storage/products/' . $imageName));
+
+            // 3. Save path in DB
+            $data['image_path'] = 'products/' . $imageName;
         }
 
         \App\Models\Product::create($data);
@@ -61,7 +69,7 @@ class ProductController extends Controller
         return redirect()->route('products.index')->with('success', 'Product created successfully.');
     }
 
-    public function edit(\App\Models\Product $product)
+    public function edit(Request $request, \App\Models\Product $product)
     {
         $categories = \App\Models\Category::all();
         return view('products.edit', compact('product', 'categories'));
@@ -77,16 +85,32 @@ class ProductController extends Controller
             'image' => 'nullable|image|max:2048',
         ]);
 
-        $data = $request->all();
+        $data = $request->except('image');
 
         if ($request->hasFile('image')) {
-            $path = $request->file('image')->store('products', 'public');
-            $data['image_path'] = 'storage/' . $path;
+            $image = $request->file('image');
+            $imageName = time() . '_' . $image->getClientOriginalName();
+
+            // 1. Save in normal storage
+            $image->storeAs('products', $imageName, 'public');
+
+            // 2. Copy to public/storage
+            if (!file_exists(public_path('storage/products'))) {
+                mkdir(public_path('storage/products'), 0755, true);
+            }
+            copy(storage_path('app/public/products/' . $imageName), public_path('storage/products/' . $imageName));
+
+            // 3. Save path in DB
+            $data['image_path'] = 'products/' . $imageName;
         }
 
         $product->update($data);
 
-        return redirect()->route('products.index')->with('success', 'Product updated successfully.');
+        return redirect()->route('products.index', [
+            'page' => $request->input('page'),
+            'search' => $request->input('search'),
+            'category' => $request->input('category'),
+        ])->with('success', 'Product updated successfully.');
     }
 
     public function destroy(\App\Models\Product $product)
@@ -112,10 +136,10 @@ class ProductController extends Controller
     public function export()
     {
         $products = \App\Models\Product::with('category')->get();
-        
+
         $csvData = [];
         $csvData[] = ['No', 'Categories', 'Product', 'Unit', 'Price'];
-        
+
         foreach ($products as $index => $product) {
             $csvData[] = [
                 $index + 1,
@@ -125,29 +149,22 @@ class ProductController extends Controller
                 number_format($product->price, 2, '.', '')
             ];
         }
-        
+
         $filename = 'products_export_' . date('Y-m-d_His') . '.csv';
-        
+
         $handle = fopen('php://output', 'w');
         ob_start();
-        
+
         foreach ($csvData as $row) {
             fputcsv($handle, $row);
         }
-        
+
         fclose($handle);
         $csv = ob_get_clean();
-        
+
         return response($csv, 200, [
             'Content-Type' => 'text/csv',
             'Content-Disposition' => 'attachment; filename="' . $filename . '"',
         ]);
-    }
-
-    public function exportPdf()
-    {
-        $products = \App\Models\Product::with('category')->get();
-        $pdf = \Barryvdh\DomPDF\Facade\Pdf::loadView('products.pdf', compact('products'));
-        return $pdf->stream('provisions-list.pdf');
     }
 }

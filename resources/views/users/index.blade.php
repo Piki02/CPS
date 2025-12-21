@@ -16,11 +16,7 @@
                         </a>
                     </div>
 
-                    @if(session('success'))
-                        <div class="mb-4 bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">
-                            <span class="block sm:inline">{{ session('success') }}</span>
-                        </div>
-                    @endif
+
 
                     <div class="overflow-x-auto">
                         <table class="min-w-full divide-y divide-gray-200">
@@ -46,10 +42,10 @@
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
                                         <a href="{{ route('users.edit', $user) }}" class="text-indigo-600 hover:text-indigo-900 mr-4">{{ __('Edit') }}</a>
-                                        <form action="{{ route('users.destroy', $user) }}" method="POST" class="inline-block">
+                                        <form action="{{ route('users.destroy', $user) }}" method="POST" class="inline-block delete-form">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="text-red-600 hover:text-red-900" onclick="return confirm('Are you sure?')">{{ __('Delete') }}</button>
+                                            <button type="button" class="text-red-600 hover:text-red-900 delete-btn">{{ __('Delete') }}</button>
                                         </form>
                                     </td>
                                 </tr>

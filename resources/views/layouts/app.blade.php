@@ -80,6 +80,32 @@
                     title: 'Please check the form for errors.'
                 });
             @endif
+
+            // Global Delete Confirmation
+            document.addEventListener('DOMContentLoaded', function() {
+                document.body.addEventListener('click', function(e) {
+                    if (e.target.classList.contains('delete-btn')) {
+                        e.preventDefault();
+                        const button = e.target;
+                        const form = button.closest('.delete-form');
+                        
+                        Swal.fire({
+                            title: '{{ __("Are you sure?") }}',
+                            text: '{{ __("You will not be able to recover this item!") }}',
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonColor: '#d33',
+                            cancelButtonColor: '#3085d6',
+                            confirmButtonText: '{{ __("Yes, delete it!") }}',
+                            cancelButtonText: '{{ __("Cancel") }}'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                form.submit();
+                            }
+                        });
+                    }
+                });
+            });
         </script>
     </body>
 </html>
