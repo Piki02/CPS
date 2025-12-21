@@ -6,7 +6,7 @@
     </x-slot>
 
     <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <!-- Search and Filters -->
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg border-t-4 border-cps-blue mb-6">
                 <div class="p-6">
@@ -92,7 +92,7 @@
             <!-- Products Table -->
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg border-t-4 border-cps-blue">
                 <div class="p-6">
-                    <div class="flex justify-between items-center mb-6">
+                    <div class="flex flex-col md:flex-row justify-between items-center mb-6 gap-4">
                         <h3 class="text-2xl font-bold text-gray-800">{{ __('Product List') }}</h3>
                         <div class="flex gap-3">
                             <a href="{{ route('products.import-export') }}"
@@ -103,6 +103,16 @@
                                     </path>
                                 </svg>
                                 {{ __('Import / Export') }}
+                            </a>
+                            <a href="{{ route('products.export-pdf') }}"
+                                class="bg-red-600 text-white font-bold py-2 px-6 rounded-lg hover:bg-red-700 transition duration-300 inline-flex items-center"
+                                target="_blank">
+                                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 2H7a2 2 0 00-2 2v14a2 2 0 002 2z">
+                                    </path>
+                                </svg>
+                                {{ __('Export PDF') }}
                             </a>
                             <a href="{{ route('products.create') }}"
                                 class="bg-cps-blue text-white font-bold py-2 px-6 rounded-lg hover:bg-blue-800 transition duration-300 inline-flex items-center">
@@ -115,11 +125,7 @@
                         </div>
                     </div>
 
-                    @if(session('success'))
-                        <div class="mb-4 bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative">
-                            {{ session('success') }}
-                        </div>
-                    @endif
+
 
                     <div class="overflow-x-auto">
                         @php
@@ -153,7 +159,7 @@
                                     <tr class="hover:bg-gray-50 transition">
                                         <td class="px-6 py-4 whitespace-nowrap">
                                             @if($product->image_path)
-                                                <img src="{{ str_starts_with($product->image_path, 'products/') ? asset('storage/' . $product->image_path) : asset($product->image_path) }}" alt="{{ $product->name }}"
+                                                <img src="{{ asset($product->image_path) }}" alt="{{ $product->name }}"
                                                     class="h-10 w-10 rounded-full object-cover">
                                             @else
                                                 <span class="text-gray-400">No Image</span>
@@ -163,13 +169,15 @@
                                             {{ $product->name }}</td>
                                         <td class="px-6 py-4 whitespace-nowrap text-gray-500">
                                             {{ $product->category->name ?? 'Uncategorized' }}</td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-gray-900">
-                                            <div class="font-bold">${{ number_format($product->price, 2) }}</div>
-                                            <div class="text-sm text-gray-500">Q{{ number_format($product->price * $exchangeRate, 2) }}</div>
+                                        <td class="px-6 py-4 whitespace-nowrap text-gray-900 font-bold">
+                                            ${{ number_format($product->price, 2) }}
+                                            <div class="text-xs text-gray-500 font-normal">
+                                                Q{{ number_format($product->price * ($exchangeRate ?? 7.8), 2) }}
+                                            </div>
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-gray-500">{{ $product->unit }}</td>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                                            <a href="{{ route('products.edit', [$product, 'page' => request('page'), 'search' => request('search'), 'category' => request('category')]) }}"
+                                            <a href="{{ route('products.edit', $product) }}"
                                                 class="text-indigo-600 hover:text-indigo-900 mr-4">{{ __('Edit') }}</a>
                                             <form action="{{ route('products.destroy', $product) }}" method="POST"
                                                 class="inline-block">

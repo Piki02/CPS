@@ -6,12 +6,12 @@
     </x-slot>
 
     <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <!-- Search Bar -->
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg border-t-4 border-cps-blue mb-6">
                 <div class="p-6">
                     <form action="{{ route('categories.index') }}" method="GET">
-                        <div class="flex gap-4">
+                        <div class="flex flex-col md:flex-row gap-4">
                             <!-- Search Input -->
                             <div class="flex-1">
                                 <label for="search" class="block text-sm font-medium text-gray-700 mb-2">{{ __('Search Categories') }}</label>
@@ -34,7 +34,7 @@
 
                             <!-- Search Button -->
                             <div class="flex items-end">
-                                <button type="submit" class="bg-cps-blue text-white font-bold py-2 px-6 rounded-lg hover:bg-blue-800 transition duration-300 inline-flex items-center">
+                                <button type="submit" class="bg-cps-blue text-white font-bold py-2 px-6 rounded-lg hover:bg-blue-800 transition duration-300 inline-flex items-center justify-center w-full md:w-auto">
                                     <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
                                     </svg>
@@ -45,7 +45,7 @@
                             @if(request('search'))
                             <!-- Clear Button -->
                             <div class="flex items-end">
-                                <a href="{{ route('categories.index') }}" class="bg-gray-500 text-white font-bold py-2 px-6 rounded-lg hover:bg-gray-600 transition duration-300 inline-flex items-center">
+                                <a href="{{ route('categories.index') }}" class="bg-gray-500 text-white font-bold py-2 px-6 rounded-lg hover:bg-gray-600 transition duration-300 inline-flex items-center justify-center w-full md:w-auto">
                                     <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
                                     </svg>
@@ -71,9 +71,9 @@
             <!-- Categories Table -->
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg border-t-4 border-cps-blue">
                 <div class="p-6">
-                    <div class="flex justify-between items-center mb-6">
+                    <div class="flex flex-col md:flex-row justify-between items-center mb-6 gap-4">
                         <h3 class="text-2xl font-bold text-gray-800">{{ __('Category List') }}</h3>
-                        <a href="{{ route('categories.create') }}" class="bg-cps-blue text-white font-bold py-2 px-6 rounded-lg hover:bg-blue-800 transition duration-300 inline-flex items-center">
+                        <a href="{{ route('categories.create') }}" class="bg-cps-blue text-white font-bold py-2 px-6 rounded-lg hover:bg-blue-800 transition duration-300 inline-flex items-center justify-center w-full md:w-auto">
                             <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
                             </svg>

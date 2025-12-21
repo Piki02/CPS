@@ -70,6 +70,35 @@
             <x-responsive-nav-link :href="route('store')" :active="request()->routeIs('store')">
                 {{ __('Store') }}
             </x-responsive-nav-link>
+
+            @role('Admin|Branch Store|Supplier')
+            <x-responsive-nav-link :href="route('orders.index')" :active="request()->routeIs('orders.*')">
+                {{ __('Orders') }}
+            </x-responsive-nav-link>
+
+            <x-responsive-nav-link :href="route('tokens.index')" :active="request()->routeIs('tokens.*')">
+                {{ __('Access Tokens') }}
+            </x-responsive-nav-link>
+            @endrole
+
+            @role('Admin|Branch Store')
+            <div class="border-t border-gray-200 mt-2 pt-2">
+                <div class="px-4 py-2 text-xs font-semibold text-gray-500 uppercase tracking-wider">
+                    {{ __('Management') }}
+                </div>
+                <x-responsive-nav-link :href="route('products.index')" :active="request()->routeIs('products.*')">
+                    {{ __('Products') }}
+                </x-responsive-nav-link>
+
+                <x-responsive-nav-link :href="route('categories.index')" :active="request()->routeIs('categories.*')">
+                    {{ __('Categories') }}
+                </x-responsive-nav-link>
+
+                <x-responsive-nav-link :href="route('users.index')" :active="request()->routeIs('users.*')">
+                    {{ __('Users') }}
+                </x-responsive-nav-link>
+            </div>
+            @endrole
         </div>
 
         <!-- Responsive Settings Options -->
