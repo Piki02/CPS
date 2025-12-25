@@ -139,36 +139,6 @@ class ProductController extends Controller
 
     public function export()
     {
-        $products = \App\Models\Product::with('category')->get();
-
-        $csvData = [];
-        $csvData[] = ['No', 'Categories', 'Product', 'Unit', 'Price'];
-
-        foreach ($products as $index => $product) {
-            $csvData[] = [
-                $index + 1,
-                $product->category->name ?? 'Uncategorized',
-                $product->name,
-                $product->unit,
-                number_format($product->price, 2, '.', '')
-            ];
-        }
-
-        $filename = 'products_export_' . date('Y-m-d_His') . '.csv';
-
-        $handle = fopen('php://output', 'w');
-        ob_start();
-
-        foreach ($csvData as $row) {
-            fputcsv($handle, $row);
-        }
-
-        fclose($handle);
-        $csv = ob_get_clean();
-
-        return response($csv, 200, [
-            'Content-Type' => 'text/csv',
-            'Content-Disposition' => 'attachment; filename="' . $filename . '"',
-        ]);
+        return Excel::download(new \App\Exports\ProductsExport, 'products_export_' . date('Y-m-d_His') . '.xlsx');
     }
 }
