@@ -178,9 +178,9 @@
                             </div>
                         </div>
 
-                        <form action="{{ route('cart.checkout') }}" method="POST">
+                        <form action="{{ route('cart.checkout') }}" method="POST" id="checkout-form">
                             @csrf
-                            <button type="submit" class="w-full bg-gradient-to-r from-cps-blue to-blue-700 text-white font-bold py-4 px-6 rounded-xl hover:from-blue-700 hover:to-blue-800 transition duration-300 shadow-lg hover:shadow-xl flex items-center justify-center gap-2 group">
+                            <button type="button" id="checkout-button" class="w-full bg-gradient-to-r from-cps-blue to-blue-700 text-white font-bold py-4 px-6 rounded-xl hover:from-blue-700 hover:to-blue-800 transition duration-300 shadow-lg hover:shadow-xl flex items-center justify-center gap-2 group">
                                 {{ __('Proceed to Checkout') }}
                                 <svg class="w-5 h-5 group-hover:translate-x-1 transition" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
@@ -213,3 +213,34 @@
     </div>
 </div>
 @endsection
+
+@push('scripts')
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const checkoutButton = document.getElementById('checkout-button');
+        const checkoutForm = document.getElementById('checkout-form');
+
+        if (checkoutButton && checkoutForm) {
+            checkoutButton.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                Swal.fire({
+                    title: '{{ __("Are you sure?") }}',
+                    text: '{{ __("You are about to finalize this order.") }}',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: '{{ __("Yes, confirm order!") }}',
+                    cancelButtonText: '{{ __("Cancel") }}'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        checkoutForm.submit();
+                    }
+                });
+            });
+        }
+    });
+</script>
+@endpush

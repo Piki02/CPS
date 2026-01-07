@@ -14,20 +14,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::group(['prefix' => Mcamara\LaravelLocalization\Facades\LaravelLocalization::setLocale(), 'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]], function() {
+Route::group(['prefix' => Mcamara\LaravelLocalization\Facades\LaravelLocalization::setLocale(), 'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath']], function () {
     Route::get('/', [App\Http\Controllers\PublicController::class, 'home'])->name('home');
     Route::get('/about', [App\Http\Controllers\PublicController::class, 'about'])->name('about');
     Route::get('/services', [App\Http\Controllers\PublicController::class, 'services'])->name('services');
     Route::get('/contact', [App\Http\Controllers\PublicController::class, 'contact'])->name('contact');
     Route::get('/contact', [App\Http\Controllers\PublicController::class, 'contact'])->name('contact');
-    
+
     // Token Access Routes
     Route::get('/store/access', [App\Http\Controllers\TokenController::class, 'showForm'])->name('token.form');
     Route::post('/store/validate', [App\Http\Controllers\TokenController::class, 'validateToken'])->name('token.validate');
 
     // Protected Store Route
     Route::get('/store', [App\Http\Controllers\PublicController::class, 'store'])->name('store')->middleware('check.token');
-    
+
     // Cart Routes
     Route::post('/cart/add/{id}', [App\Http\Controllers\CartController::class, 'add'])->name('cart.add');
     Route::get('/cart', [App\Http\Controllers\CartController::class, 'index'])->name('cart.index');
@@ -71,10 +71,16 @@ Route::group(['prefix' => Mcamara\LaravelLocalization\Facades\LaravelLocalizatio
         // Order Management
         Route::get('/orders', [App\Http\Controllers\OrderController::class, 'index'])->name('orders.index');
         Route::get('/orders/{order}', [App\Http\Controllers\OrderController::class, 'show'])->name('orders.show');
+        Route::get('/orders/{order}/export', [App\Http\Controllers\OrderController::class, 'export'])->name('orders.export');
         Route::put('/orders/{order}', [App\Http\Controllers\OrderController::class, 'update'])->name('orders.update');
         Route::delete('/orders/{order}', [App\Http\Controllers\OrderController::class, 'destroy'])->name('orders.destroy');
         Route::get('/orders/{order}/quotation', [App\Http\Controllers\OrderController::class, 'generateQuotation'])->name('orders.quotation');
+
+        // Order Item Management
+        Route::post('/orders/{order}/items', [App\Http\Controllers\OrderController::class, 'addProduct'])->name('orders.add-product');
+        Route::put('/orders/{order}/items/{item}', [App\Http\Controllers\OrderController::class, 'updateItem'])->name('orders.update-item');
+        Route::delete('/orders/{order}/items/{item}', [App\Http\Controllers\OrderController::class, 'removeItem'])->name('orders.remove-item');
     });
 
-    require __DIR__.'/auth.php';
+    require __DIR__ . '/auth.php';
 });
