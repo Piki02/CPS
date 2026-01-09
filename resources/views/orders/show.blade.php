@@ -168,10 +168,32 @@
                                                             </path>
                                                         </svg>
                                                     </button>
+                                                    <!-- Hidden field to maintain form structure -->
+                                                    <input type="hidden" name="unit_price_holder" value="{{ $item->unit_price }}">
                                                 </form>
                                             </td>
                                             <td class="px-6 py-4 whitespace-nowrap text-right text-sm text-gray-500">
-                                                ${{ number_format($item->unit_price, 2) }}
+                                                <form action="{{ route('orders.update-item', [$order, $item]) }}"
+                                                    method="POST" class="flex items-center justify-end gap-2">
+                                                    @csrf
+                                                    @method('PUT')
+                                                    <span class="text-gray-600">$</span>
+                                                    <input type="number" step="0.01" name="unit_price" value="{{ $item->unit_price }}"
+                                                        min="0"
+                                                        class="w-24 rounded-md border-gray-300 shadow-sm focus:border-cps-blue focus:ring-cps-blue text-right text-sm">
+                                                    <button type="submit" class="text-blue-600 hover:text-blue-900"
+                                                        title="Update Price">
+                                                        <svg class="w-4 h-4" fill="none" stroke="currentColor"
+                                                            viewBox="0 0 24 24">
+                                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                                stroke-width="2"
+                                                                d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15">
+                                                            </path>
+                                                        </svg>
+                                                    </button>
+                                                    <!-- Hidden field to maintain form structure -->
+                                                    <input type="hidden" name="quantity" value="{{ $item->quantity }}">
+                                                </form>
                                             </td>
                                             <td
                                                 class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium text-gray-900">

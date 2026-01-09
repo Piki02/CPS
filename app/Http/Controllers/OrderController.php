@@ -102,6 +102,7 @@ class OrderController extends Controller
     {
         $request->validate([
             'quantity' => 'required|integer|min:1',
+            'unit_price' => 'nullable|numeric|min:0',
         ]);
 
         // Ensure item belongs to order
@@ -109,9 +110,13 @@ class OrderController extends Controller
             abort(403);
         }
 
+        // Use provided unit_price if available, otherwise keep existing price
+        $unitPrice = $request->has('unit_price') ? $request->unit_price : $item->unit_price;
+
         $item->update([
             'quantity' => $request->quantity,
-            'subtotal' => $item->unit_price * $request->quantity,
+            'unit_price' => $unitPrice,
+            'subtotal' => $unitPrice * $request->quantity,
         ]);
 
         $this->recalculateTotals($order);
