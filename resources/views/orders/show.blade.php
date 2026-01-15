@@ -39,6 +39,24 @@
                                     </svg>
                                     {{ __('Generate Quotation') }}
                                 </a>
+                                <a href="{{ route('orders.export-invoice', $order) }}"
+                                    class="bg-blue-600 text-white text-sm px-4 py-2 rounded-lg hover:bg-blue-700 transition duration-150 flex items-center">
+                                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z">
+                                        </path>
+                                    </svg>
+                                    {{ __('Invoice (Excel)') }}
+                                </a>
+                                <a href="{{ route('orders.invoice-pdf', $order) }}" target="_blank"
+                                    class="bg-indigo-600 text-white text-sm px-4 py-2 rounded-lg hover:bg-indigo-700 transition duration-150 flex items-center">
+                                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z">
+                                        </path>
+                                    </svg>
+                                    {{ __('Invoice (PDF)') }}
+                                </a>
                             </div>
                             <span class="px-3 py-1 rounded-full text-sm font-semibold 
                             @if($order->status == 'pending') bg-yellow-100 text-yellow-800
@@ -299,6 +317,62 @@
                                     <button type="submit"
                                         class="bg-cps-blue text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition duration-150 font-semibold shadow-md">
                                         {{ __('Update Order') }}
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+
+                        <!-- Invoice Details Form -->
+                        <div class="mt-8 bg-gray-50 p-6 rounded-lg border border-gray-200">
+                            <h3 class="text-lg font-bold mb-4 text-gray-800">{{ __('Invoice Details') }}</h3>
+                            <form action="{{ route('orders.update-invoice-details', $order) }}" method="POST">
+                                @csrf
+                                @method('PUT')
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                    <div>
+                                        <label for="invoice_name" class="block text-sm font-medium text-gray-700 mb-1">
+                                            {{ __('Name') }} <span class="text-gray-400 text-xs">({{ __('Bill To Name') }})</span>
+                                        </label>
+                                        <input type="text" name="invoice_name" id="invoice_name"
+                                            value="{{ old('invoice_name', $order->invoice_name) }}"
+                                            class="w-full rounded-md border-gray-300 shadow-sm focus:border-cps-blue focus:ring-cps-blue">
+                                    </div>
+                                    <div>
+                                        <label for="invoice_phone" class="block text-sm font-medium text-gray-700 mb-1">
+                                            {{ __('Phone') }}
+                                        </label>
+                                        <input type="text" name="invoice_phone" id="invoice_phone"
+                                            value="{{ old('invoice_phone', $order->invoice_phone) }}"
+                                            class="w-full rounded-md border-gray-300 shadow-sm focus:border-cps-blue focus:ring-cps-blue">
+                                    </div>
+                                    <div>
+                                        <label for="invoice_nit" class="block text-sm font-medium text-gray-700 mb-1">
+                                            {{ __('NIT') }}
+                                        </label>
+                                        <input type="text" name="invoice_nit" id="invoice_nit"
+                                            value="{{ old('invoice_nit', $order->invoice_nit) }}"
+                                            class="w-full rounded-md border-gray-300 shadow-sm focus:border-cps-blue focus:ring-cps-blue">
+                                    </div>
+                                    <div>
+                                        <label for="invoice_zip_code" class="block text-sm font-medium text-gray-700 mb-1">
+                                            {{ __('Address (Zip Code)') }}
+                                        </label>
+                                        <input type="text" name="invoice_zip_code" id="invoice_zip_code"
+                                            value="{{ old('invoice_zip_code', $order->invoice_zip_code) }}"
+                                            class="w-full rounded-md border-gray-300 shadow-sm focus:border-cps-blue focus:ring-cps-blue">
+                                    </div>
+                                    <div class="md:col-span-2">
+                                        <label for="invoice_address" class="block text-sm font-medium text-gray-700 mb-1">
+                                            {{ __('Address') }}
+                                        </label>
+                                        <textarea name="invoice_address" id="invoice_address" rows="2"
+                                            class="w-full rounded-md border-gray-300 shadow-sm focus:border-cps-blue focus:ring-cps-blue">{{ old('invoice_address', $order->invoice_address) }}</textarea>
+                                    </div>
+                                </div>
+                                <div class="mt-4 flex justify-end">
+                                    <button type="submit"
+                                        class="bg-cps-blue text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition duration-150 font-semibold shadow-md">
+                                        {{ __('Update Invoice Details') }}
                                     </button>
                                 </div>
                             </form>

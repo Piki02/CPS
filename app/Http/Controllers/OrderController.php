@@ -9,6 +9,7 @@ use App\Models\OrderItem;
 use App\Models\Product;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\OrderExport;
+use App\Exports\InvoiceExport;
 
 class OrderController extends Controller
 {
@@ -61,11 +62,39 @@ class OrderController extends Controller
         return redirect()->route('orders.show', $order)->with('success', 'Order updated successfully.');
     }
 
+    public function updateInvoiceDetails(Request $request, Order $order)
+    {
+        $request->validate([
+            'invoice_name' => 'nullable|string|max:255',
+            'invoice_address' => 'nullable|string',
+            'invoice_phone' => 'nullable|string|max:255',
+            'invoice_nit' => 'nullable|string|max:255',
+            'invoice_zip_code' => 'nullable|string|max:20',
+        ]);
+
+        $order->update([
+            'invoice_name' => $request->invoice_name,
+            'invoice_address' => $request->invoice_address,
+            'invoice_phone' => $request->invoice_phone,
+            'invoice_nit' => $request->invoice_nit,
+            'invoice_zip_code' => $request->invoice_zip_code,
+        ]);
+
+        return redirect()->back()->with('success', 'Invoice details updated successfully.');
+    }
+
     public function generateQuotation(Order $order)
     {
         $order->load('items.product.category');
         $pdf = \Barryvdh\DomPDF\Facade\Pdf::loadView('orders.quotation', compact('order'));
         return $pdf->stream('quotation-' . $order->id . '.pdf');
+    }
+
+    public function generateInvoice(Order $order)
+    {
+        $order->load('items.product.category');
+        $pdf = \Barryvdh\DomPDF\Facade\Pdf::loadView('orders.invoice', compact('order'));
+        return $pdf->stream('invoice-' . $order->id . '.pdf');
     }
 
     public function destroy(Order $order)
@@ -160,5 +189,10 @@ class OrderController extends Controller
     public function export(Order $order)
     {
         return Excel::download(new OrderExport($order), 'order_' . $order->id . '.xlsx');
+    }
+
+    public function exportInvoice(Order $order)
+    {
+        return Excel::download(new InvoiceExport($order), 'invoice_' . $order->id . '.xlsx');
     }
 }

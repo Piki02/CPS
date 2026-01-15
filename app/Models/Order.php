@@ -20,6 +20,11 @@ class Order extends Model
         'discount_percentage',
         'tax',
         'shipping_cost',
+        'invoice_name',
+        'invoice_address',
+        'invoice_phone',
+        'invoice_nit',
+        'invoice_zip_code',
     ];
 
     public function items()

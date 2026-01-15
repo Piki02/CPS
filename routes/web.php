@@ -75,6 +75,9 @@ Route::group(['prefix' => Mcamara\LaravelLocalization\Facades\LaravelLocalizatio
         Route::put('/orders/{order}', [App\Http\Controllers\OrderController::class, 'update'])->name('orders.update');
         Route::delete('/orders/{order}', [App\Http\Controllers\OrderController::class, 'destroy'])->name('orders.destroy');
         Route::get('/orders/{order}/quotation', [App\Http\Controllers\OrderController::class, 'generateQuotation'])->name('orders.quotation');
+        Route::get('/orders/{order}/invoice-pdf', [App\Http\Controllers\OrderController::class, 'generateInvoice'])->name('orders.invoice-pdf');
+        Route::get('/orders/{order}/export-invoice', [App\Http\Controllers\OrderController::class, 'exportInvoice'])->name('orders.export-invoice');
+        Route::put('/orders/{order}/invoice-details', [App\Http\Controllers\OrderController::class, 'updateInvoiceDetails'])->name('orders.update-invoice-details');
 
         // Order Item Management
         Route::post('/orders/{order}/items', [App\Http\Controllers\OrderController::class, 'addProduct'])->name('orders.add-product');
